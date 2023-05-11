@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            
+        }
+
+        #board {
+            position: relative;
+            width: 100%;
+            height: 80vh;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        #btn-group button {
+            padding: 10px 30px;
+            font-size: 20px;
+            cursor: pointer;
+            background-color: antiquewhite;
+            border: 0;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+
+        #btn-group button:hover {
+            background-color: rgb(255, 222, 179);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 버튼영역 -->
+    <p>버튼을 클릭 후 하단을 클릭해보세요!</p>
+    <div id="btn-group"></div>
+    <!-- 스프라이트 애니메이션 영역 -->
+    <h1>스프라이트 애니메이션</h1>
+    <div id="board"></div>
+
+    <script>
+        const imgData = [{
+                name: '뻥',
+                src: 'url(./explosion.png)',
+                col: 3,
+                row: 3
+            },
+            {
+                name: '뾰로롱',
+                src: 'url(./explosion2.png)',
+                col: 4,
+                row: 4
+            },
+            {
+                name: '촤',
+                src: 'url(./explosion3.png)',
+                col: 6,
+                row: 5
+            },
+            {
+                name: '펑',
+                src: 'url(./explosion5.png)',
+                col: 6,
+                row: 5
+            },
+            {
+                name: '쨍그랑',
+                src: 'url(./explosion15.png)',
+                col: 8,
+                row: 4
+            },
+            {
+                name: '파바박',
+                src: 'url(./explosion17.png)',
+                col: 4,
+                row: 4
+            },
+        ]
+
+        const btnGroup = document.getElementById('btn-group')
+        const board = document.getElementById('board')
+        const btn = btnGroup.children;
+        let btnIndex
+        let event = false
+
+        board.addEventListener('click', spriteEffect)
+        createBtn()
+
+        // 버튼생성
+        function createBtn() {
+            imgData.forEach((el, idx) => {
+                const btnEl = document.createElement('button')
+                btnGroup.append(btnEl)
+                btnEl.textContent = `${imgData[idx].name}`
+            })
+        }
+
+        // 버튼 index 구하기
+        Array.from(btn).forEach((item, idx) => {
+            item.addEventListener('click', function (e) {
+                btnIndex = idx
+                event = true
+            })
+        })
+
+        // 스프라이트 생성
+        function spriteEffect(e) {
+            if (event === false) {
+                alert('버튼을 선택 후 클릭해주세요😊')
+            }
+            const width = 140
+            const height = 140
+            const cols = imgData[btnIndex].col
+            const rows = imgData[btnIndex].row
+            let current = 0
+            intervalGap = 1000 / 20
+
+            const sprite = document.createElement('div')
+            sprite.style.position = 'absolute'
+            sprite.style.left = `${e.offsetX}px`
+            sprite.style.top = `${e.offsetY}px`
+            sprite.style.width = `${width}px`
+            sprite.style.height = `${height}px`
+            sprite.style.backgroundImage = imgData[btnIndex].src
+            sprite.style.backgroundSize = `${width * cols}px ${height * rows}px`
+            sprite.style.transform = `
+                translate(-50%, -50%)
+                scale(${randomNumBetween(0.7, 2.5)})
+            `
+            board.append(sprite)
+
+            const intervalId = setInterval(() => {
+                const currentCol = current % cols //나머지 구하기
+                const currentRow = Math.floor(current / cols)
+
+                sprite.style.backgroundPosition = `${-width * currentCol}px ${-height * currentRow}px`
+                // current++
+                if (++current % (rows * cols) === 0) {
+                    clearInterval(intervalId)
+                    board.removeChild(sprite)
+                }
+            }, intervalGap)
+        }
+
+        function randomNumBetween(min, max) {
+            return Math.random() * (max - min) + min
+        }
+    </script>
+</body>
+
+</html>
