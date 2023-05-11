@@ -7,36 +7,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        body {
+            text-align: center;
+            text-transform: capitalize;
+        }
         #board {
             position: relative;
             width: 100%;
             height: 80vh;
             overflow: hidden;
-            background-color: #000;
+            border-radius: 10px;
+            background-color: #000d24;
         }
 
         #btn-group button {
+            width: 120px;
             padding: 10px 30px;
             font-size: 20px;
             cursor: pointer;
-            background-color: antiquewhite;
+            background-color: #d3e3ff;
             border: 0;
             border-radius: 4px;
             margin-right: 10px;
+            font-weight: bold;
         }
 
-        #btn-group button:hover {
-            background-color: rgb(255, 222, 179);
+        #btn-group button:hover,
+        #btn-group button.active {
+            background-color: #8ab5ff;
         }
     </style>
 </head>
 
 <body>
     <!-- 버튼영역 -->
-    <p>버튼을 클릭 후 하단을 클릭해보세요!</p>
+    <p>👇버튼을 클릭 후 하단을 클릭해보세요!👇</p>
     <div id="btn-group"></div>
     <!-- 스프라이트 애니메이션 영역 -->
-    <h1>스프라이트 애니메이션</h1>
+    <h1>sprite image animation</h1>
     <div id="board"></div>
 
     <script>
@@ -107,14 +115,20 @@
             item.addEventListener('click', function (e) {
                 btnIndex = idx
                 event = true
+                Array.from(btn).forEach((el) => {
+                    el.classList.remove('active')
+                })
+                item.classList.add('active')
             })
         })
 
         // 스프라이트 생성
         function spriteEffect(e) {
+            // 버튼 클릭 전 메세지
             if (event === false) {
-                alert('버튼을 선택 후 클릭해주세요😊')
+                alert('😊버튼을 선택 후 클릭해주세요😊')
             }
+
             const width = 140
             const height = 140
             const cols = imgData[btnIndex].col
@@ -149,6 +163,7 @@
             }, intervalGap)
         }
 
+        // 랜덤 사이즈
         function randomNumBetween(min, max) {
             return Math.random() * (max - min) + min
         }
