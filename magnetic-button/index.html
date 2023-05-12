@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- gsap -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"
+        integrity="sha512-cOH8ndwGgPo+K7pTvMrqYbmI8u8k6Sho3js0gOqVWTmQMlLIi6TbqGWRTpf1ga8ci9H3iPsvDLr4X7xwhC/+DQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+        body,
+        html {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: rgb(239, 0, 119);
+            text-decoration: none;
+            /* transition: transform 100ms ease-out; */
+            box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+        }
+
+        .btn span {
+            font-weight: bold;
+            font-size: 30px;
+            text-transform: uppercase;
+            color: #fff700;
+            transition: transform 100ms ease-out;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="" class="btn">
+        <span>hover me!</span>
+    </a>
+
+    <script>
+        function magneticButton(element) {
+            const btnText = element.children[0]
+
+            element.addEventListener('mousemove', e => {
+                const { offsetLeft, offsetTop, offsetWidth, offsetHeight } = element
+                // 버튼의 위치
+                const left = e.pageX - offsetLeft
+                const top = e.pageY - offsetTop
+                // 버튼 내에서 마우스 위치 (자석효과)
+                const centerX = left - offsetWidth / 2
+                const centerY = top - offsetHeight / 2
+                // 버튼 중심으로 부터 마우스까지 떨어진 위치
+                const d = Math.sqrt(centerX ** 2 + centerY ** 2)
+
+                // 마우스 위치시 이동
+                // element.style.transform = `
+                //     translate3d(${centerX / 1.5}px, ${centerY / 1.5}px, 0)
+                // `
+
+                gsap.to(element, 0.5, {
+                    x: centerX / 1.5,
+                    y: centerY / 1.5,
+                    ease: Elastic.easeOut
+                })
+
+                btnText.style.transform = `
+                    translate3d(${centerX / 4}px, ${centerY / 4}px, 0)
+                    rotate3d(${-centerY / 100}, ${centerX / 100}, 0, ${d / 10}deg)
+                `
+            })
+
+            element.addEventListener('mouseleave', () => {
+                // element.style.transform = ``
+                gsap.to(element, 1.2, {
+                    x: 0,
+                    y: 0,
+                    ease: Elastic.easeOut.config(1, 0.1)
+                })
+                btnText.style.transform = ``
+            })
+        }
+
+        const btn = document.querySelector('.btn')
+        magneticButton(btn)
+    </script>
+</body>
+
+</html>
