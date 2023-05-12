@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #frame {
+            width: 300px;
+            height: 420px;
+        }
+        .card-item {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: url(https://images.unsplash.com/photo-1614157396810-3e065ab06a53?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=686&q=80) no-repeat center / 100%;
+            border-radius: 17px;
+            box-shadow: 0 0 10px 2px rgba(0,0,0,.1);
+            transition-property: transform, box-shadow;
+            transition-duration: 250ms;
+            transition-timing-function: ease-out;
+        }
+        .card-item:hover {
+            transform: scale3d(1.05, 1.05, 1.05);
+        }
+        .light {
+            position: absolute;
+            content: "";
+            width: 100%;
+            height: 100%;
+            border-radius: 9px;
+        }
+    </style>
+</head>
+<body>
+    <div id="frame">
+        <div class="card-item">
+            <div class="light"></div>
+        </div>
+    </div>
+
+    <script>
+        const frame = document.getElementById('frame')
+        const card = document.querySelector('.card-item')
+        const light = document.querySelector('.light')
+
+        // 카드 위치
+        let {x, y, width, height} = frame.getBoundingClientRect()
+        
+
+        frame.addEventListener('mouseover', (e) => {
+            frame.addEventListener('mousemove', mouseMove)
+        })
+
+        function mouseMove(e) {
+            const left = e.clientX - x
+            const top = e.clientY - y 
+            const centerX = left - width / 2
+            const centerY = top - height / 2
+            const d = Math.sqrt(centerX**2 + centerY**2)
+
+            card.style.boxShadow = `
+                ${-centerX / 10}px ${centerY /10}px 10px rgba(0,0,0,.2)
+            `
+            
+            card.style.transform = `
+                rotate3d(${centerX /100}, ${centerY / 100}, 0 ,${d/10}deg)
+            `
+
+            light.style.backgroundImage = `
+                radial-gradient(
+                    circle at ${left}px ${top}px, #00000010, #ffffff00, #ffffff70
+                )
+            `
+        }
+
+        // 마우스 리브 시 스타일 초기화
+        frame.addEventListener('mouseleave', () => {
+            frame.removeEventListener('mousemove', mouseMove)
+            card.style.transform = ``
+            card.style.boxShadow = ``
+            light.style.backgroundImage = ``
+        })
+
+        // 창 사이즈 변경 시 카드 위치 다시 가져오기
+        window.addEventListener('resize', () => {
+            rect = frame.getBoundingClientRect()
+            x = rect.x
+            y = rect.y
+            width = rect.width
+            height = rect.height
+        })
+    </script>
+</body>
+</html>
