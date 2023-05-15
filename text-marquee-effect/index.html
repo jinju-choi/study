@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            width: 100%;
+            font-family: 'Pacifico', cursive;
+            overflow-x: hidden;
+        }
+
+        body {
+            height: 3000px;
+            padding-top: 20vh;
+        }
+
+        .line {
+            display: flex;
+            width: 100vw;
+            margin-bottom: 20vh;
+            font-size: 80px;
+            text-transform: capitalize;
+        }
+        .line:nth-child(1) {
+            margin-top: 10vh;
+            justify-content: flex-start;
+            transform: rotate(-2deg);
+            background-color: blue;
+        }
+        .line:nth-child(2) {
+            justify-content: flex-end;
+            transform: rotate(2deg);
+            background-color: yellow;
+        }
+        .line:nth-child(3) {
+            background: rgb(34, 255, 0);
+        }
+        .line p {
+            padding: 20px;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="line">
+        <p class="first-parallel"></p>
+    </div>
+    <div class="line">
+        <p class="second-parallel"></p>
+    </div>
+    <div class="line">
+        <p class="third-parallel"></p>
+    </div>
+
+    <script>
+        const pTag1 = document.querySelector('.first-parallel');
+        const pTag2 = document.querySelector('.second-parallel');
+        const pTag3 = document.querySelector('.third-parallel');
+
+        // 띄어쓰기 빼고 배열로 만듬
+        const textArr1 = 'Parrot Conure Cockatoo Cockatiel Lovebird Quaker Macau'.split(' ');
+        const textArr2 = 'Hello Well come to Parrot World'.split(' ');
+        const textArr3 = 'Parrot Conure Cockatoo Cockatiel Lovebird Quaker Macau'.split(' ');
+
+
+        function initTexts(element, textArray) {
+            // 복사하기
+            textArray.push(...textArray)
+
+            for (let i = 0; i < textArray.length; i++) {
+                element.innerText += `${textArray[i]}\u00A0\u00A0\u00A0\u00A0`;
+            }
+        }
+
+        initTexts(pTag1, textArr1);
+        initTexts(pTag2, textArr2);
+        initTexts(pTag3, textArr3);
+
+        let count1 = 0;
+        let count2 = 0;
+        let count3 = 0;
+
+        function marqueeText(count, element, duration) {
+            if (count > element.scrollWidth / 2) {
+                element.style.transform = `translateX(0)`;
+                count = 0;
+            }
+            element.style.transform = `translateX(${count * duration}px)`;
+            return count;
+        }
+
+        function animate() {
+            count1++;
+            count2++;
+            count3++;
+
+            count1 = marqueeText(count1, pTag1, -1);
+            count2 = marqueeText(count2, pTag2, 1);
+            count3 = marqueeText(count3, pTag3, -1);
+
+            window.requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        // 스크롤시 많이씩 이동
+        window.addEventListener('scroll', () => {
+            count1 += 15;
+            count2 += 15;
+            count3 += 15;
+        });
+    </script>
+</body>
+</html>
