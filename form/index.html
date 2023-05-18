@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="./style.css" />
+        <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <form action="">
+                <fieldset>
+                    <legend>회원가입</legend>
+                    <ul>
+                        <li>
+                            <label for="userId" class="label-text">아이디</label>
+                            <div class="input-group">
+                                <input id="userId" type="text" class="normal-input" placeholder="아이디를 입력해주세요" maxlength="16"/>
+                                <button type="submit" class="btn">중복확인</button>
+                            </div>
+                            <!-- <p class="error-text">아이디를 입력하세요</p> -->
+                        </li>
+                        <li>
+                            <label for="userPassword" class="label-text">비밀번호</label>
+                            <input id="userPassword" type="password" class="normal-input" maxlength="25"/>
+                        </li>
+                        <li>
+                            <label for="userPassword2" class="label-text">비밀번호 재 확인</label>
+                            <input id="userPassword2" type="password" class="normal-input" maxlength="25"/>
+                        </li>
+                        <li>
+                            <label for="userName" class="label-text">이름</label>
+                            <input id="userName" type="text" class="normal-input" />
+                        </li>
+                        <li>
+                            <span class="label-text">성별</span>
+                            <div class="input-group">
+                                <label for="female">여<input type="radio" name="gender" id="female" /></label>
+                                <label for="male">남<input type="radio" name="gender" id="male" /></label>
+                            </div>
+                        </li>
+                        <li>
+                            <label for="userTell" class="label-text">전화번호</label>
+                            <input id="userTell" type="tel" class="normal-input" placeholder="숫자만 입력해주세요"  maxlength="11" />
+                        </li>
+                        <li>
+                            <label for="userEmail" class="label-text">이메일</label>
+                            <div class="input-group">
+                                <input id="userEmail" type="text" class="normal-input" />
+                                <span>@</span>
+                                <input id="emailAdress" type="text" class="normal-input" readonly />
+                                <select name="" id="email-flatform" class="normal-input" onchange="emailSelf()">
+                                    <option value="naver.com">naver.com</option>
+                                    <option value="google.com">google.com</option>
+                                    <option value="daum.com">daum.co.kr</option>
+                                    <option value="mail.com">kakao.com</option>
+                                    <option value="직접입력">직접입력</option>
+                                </select>
+                            </div>
+                        </li>
+                        <li>
+                            <label for="adress" class="label-text">주소</label>
+                            <div class="innput-group">
+                                <input id="postNum" type="text" class="normal-input" placeholder="우편번호" />
+                                <button type="button" class="btn" onclick="DaumPostcode()">검색</button>
+                                <input id="address" type="text" class="normal-input" placeholder="주소" style="display: block; width: 400px" />
+                                <input id="sample6_extraAddress" type="text" class="normal-input" placeholder="참고항목" style="display: block; width: 400px" />
+                                <input id="addressDetail" type="text" class="normal-input" placeholder="상세주소" style="display: block; width: 400px" />
+                            </div>
+                        </li>
+                        <li>
+                            <label for="agree"><input type="checkbox" name="" id="agree" />약관에 동의합니다. </label>
+                        </li>
+                    </ul>
+                    <!-- <input type="button" value="가입하기" class="btn submit" onclick="joinformCheck()" /> -->
+                    <button type="button" class="btn submit" onclick="joinformCheck()">가입하기</button>
+                </fieldset>
+            </form>
+        </div>
+        <script>
+            // 카카오 주소검색
+            function DaumPostcode() {
+                new daum.Postcode({
+                    oncomplete: function (data) {
+                        // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                        // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                        // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                        var addr = ''; // 주소 변수
+                        var extraAddr = ''; // 참고항목 변수
+
+                        //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                        if (data.userSelectedType === 'R') {
+                            // 사용자가 도로명 주소를 선택했을 경우
+                            addr = data.roadAddress;
+                        } else {
+                            // 사용자가 지번 주소를 선택했을 경우(J)
+                            addr = data.jibunAddress;
+                        }
+
+                        // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+                        if (data.userSelectedType === 'R') {
+                            // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                            // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                            if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+                                extraAddr += data.bname;
+                            }
+                            // 건물명이 있고, 공동주택일 경우 추가한다.
+                            if (data.buildingName !== '' && data.apartment === 'Y') {
+                                extraAddr += extraAddr !== '' ? ', ' + data.buildingName : data.buildingName;
+                            }
+                            // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                            if (extraAddr !== '') {
+                                extraAddr = ' (' + extraAddr + ')';
+                            }
+                            // 조합된 참고항목을 해당 필드에 넣는다.
+                            document.getElementById('sample6_extraAddress').value = extraAddr;
+                        } else {
+                            document.getElementById('sample6_extraAddress').value = '';
+                        }
+
+                        // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                        document.getElementById('postNum').value = data.zonecode;
+                        document.getElementById('address').value = addr;
+                        // 커서를 상세주소 필드로 이동한다.
+                        document.getElementById('addressDetail').focus();
+                    },
+                }).open();
+            }
+            const id = document.getElementById('userId');
+            const pwd = document.getElementById('userPassword');
+            const repwd = document.getElementById('userPassword2');
+            const name = document.getElementById('userName');
+            const female = document.getElementById('female');
+            const male = document.getElementById('male');
+            const tell = document.getElementById('userTell');
+            const email = document.getElementById('userEmail');
+            const agree = document.getElementById('agree');
+            const emailSelect = document.getElementById('email-flatform');
+            const emailAdress = document.getElementById('emailAdress');
+
+            function joinformCheck() {
+                if (id.value.length == 0) {
+                    alert('아이디를 입력하세요');
+                    id.focus();
+                    return false;
+                }
+                let idcheck = /[a-z]/
+                if (!idcheck.test(id.value)) {
+                    alert('아이디는 영문으로만 가능합니다.');
+                    id.focus();
+                    return false;
+                }
+                if (pwd.value == '') {
+                    alert('비밀번호를 입력하세요');
+                    pwd.focus();
+                    return false;
+                }
+
+                // 비밀번호 영문자+숫자+특수조합(8~25자리 입력) 정규식
+                let pwdCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
+                if (!pwdCheck.test(pwd.value)) {
+                    alert('비밀번호는 영문자+숫자+특수문자 조합으로 8~25자리 사용해야 합니다.');
+                    pwd.focus();
+                    return false;
+                }
+                if ((repwd.value = '')) {
+                    alert('비밀번호 재 확인을 입력해주세요');
+                    repwd.focus();
+                    return false;
+                }
+                if (pwd.value != repwd.value) {
+                    alert('비밀번호가 일치하지 않습니다.');
+                    repwd.focus();
+                    return false;
+                }
+                if (name.value == '') {
+                    alert('이름을 입력해주세요');
+                    name.focus();
+                    return false;
+                }
+                if (!female.checked && male.checked) {
+                    alert('성별을 선택해주세요');
+                    female.focus();
+                    return false;
+                }
+
+                //숫자만 입력하는 정규식
+                let leg = /^[0-9]+/g;
+                if (!reg.test(tell.value)) {
+                    alert('전화번호는 숫자만 입력해주세요');
+                    tell.focus();
+                    return false;
+                }
+
+                if ((email.value = '')) {
+                    alert('이메일 주소를 입력하세요');
+                    email.focus();
+                    return false;
+                }
+
+                if (!agree.checked) {
+                    alert('약관을 동의해주세요');
+                    agree.focus();
+                    return false;
+                }
+
+                //입력 값 전송
+                document.joinformCheck.submit();
+            }
+
+            function emailSelf() {
+                emailAdress.value = emailSelect.value;
+
+                if (emailSelect.value == '직접입력') {
+                    emailAdress.readOnly = false;
+                    emailAdress.focus();
+                    emailAdress.value = '';
+                }
+            }
+        </script>
+    </body>
+</html>
