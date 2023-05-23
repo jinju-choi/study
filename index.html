@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            // function solution(my_string, overwrite_string, s) {
+            //     var answer = '';
+            //     var str = [...my_string]
+            //     str.splice(s, overwrite_string.length, overwrite_string )
+            //     return console.log(str.join(''));
+            // }
+            // solution(`He11oWor1d`,`lloWorl`,2)
+
+            // function solution(str1, str2) {
+            //     var answer = '';
+            //     Array.form(str1).forEach((el,idx) => {
+            //         return (el+str2[idx]).join('');
+            //     });
+            //     console.log(str1);
+            //     // return answer;
+            // }
+            // solution('aaaaa', 'bbbbb');
+
+            // function solution(my_string, k) {
+            //     var answer = '';
+
+            //     for(let i= 0; i < k; i++) {
+            //         answer += my_string
+            //     }
+            //     return answer
+            // }
+            // console.log(solution('string', 3));
+
+            // function solution(a, b) {
+            //     var answer = 0;
+            //     var type1 = String(a) + String(b);
+            //     var type2 = String(b) + String(a);
+
+            //     return type1 > type2 ? Number(type1) : Number(type2);
+            // }
+            // console.log(solution('11', '22'));
+
+            function solution(ineq, eq, n, m) {
+                var answer = 0;
+                console.log(n + ineq + eq + m);
+                return (answer = n + ineq + eq + m == true ? 1 : 0);
+            }
+
+            // console.log(solution("<", "=", 20, 50)); 
+            console.log(solution(">", "!", 41, 78)); 
+        </script>
+    </body>
+</html>
