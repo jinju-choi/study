@@ -45,14 +45,31 @@
             // }
             // console.log(solution('11', '22'));
 
-            function solution(ineq, eq, n, m) {
-                var answer = 0;
-                console.log(n + ineq + eq + m);
-                return (answer = n + ineq + eq + m == true ? 1 : 0);
+            // function solution(ineq, eq, n, m) {
+            //     var answer = 0;
+            //     console.log(n + ineq + eq + m);
+            //     return (answer = n + ineq + eq + m == true ? 1 : 0);
+            // }
+
+            // // console.log(solution("<", "=", 20, 50));
+            // console.log(solution(">", "!", 41, 78));
+
+            function solution() {
+                var num_list = [3, 4, 5, 2, 1]
+                var odd = []
+                var even = []
+                Array.from(num_list).forEach(el => {
+                    if(el % 2 == 1) {
+                        odd.push(el);
+                    }
+                    if(el % 2 == 0) {
+                        even.push(el);
+                    }
+                    console.log(odd.split(','));
+                });
             }
 
-            // console.log(solution("<", "=", 20, 50)); 
-            console.log(solution(">", "!", 41, 78)); 
+            console.log(solution());
         </script>
     </body>
 </html>
