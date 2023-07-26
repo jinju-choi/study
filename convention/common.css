@@ -1,0 +1,163 @@
+* {
+    box-sizing: border-box;
+}
+button {
+    background: transparent;
+    border: 0;
+    padding: 0;
+    line-height: 1;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+/* =============== button =============== */
+.btn-group {
+    display: flex;
+    gap: 10px;
+}
+.btn-group .btn {
+    flex: 1;
+}
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    vertical-align: middle;
+}
+
+.btn-l {
+    min-width: 100px;
+}
+.btn-f {
+    width: 100%;
+}
+.btn-m {
+    min-width: 72px;
+}
+
+.btn-s {
+    padding: 6px 12px;
+    font-size: 0.875rem;
+}
+
+.btn:disabled {
+    background: #dddddd;
+}
+
+.btn--primary {
+    background-color: #587fef;
+    color: #ffffff;
+}
+
+.btn--secondaly {
+    border: 1px solid #dddddd;
+}
+
+.btn--danger {
+    background: rgb(255, 119, 119);
+    color: #ffffff;
+}
+
+/* =============== input =============== */
+.normal-input {
+    padding: 6px 16px;
+    border: 1px solid #dddddd;
+}
+
+.input-wrap {
+    width: 400px;
+}
+
+.input-wrap + .input-wrap {
+    margin: 15px 0;
+}
+
+.input-wrap input {
+    width: 100%;
+}
+.input-group {
+    width: 400px;
+    display: flex;
+    align-items: center;
+}
+.input-group .input-wrap {
+    flex-grow: 1;
+    width: auto;
+}
+
+.hyphen {
+    margin: 0 5px;
+    vertical-align: middle;
+}
+
+.text-label {
+    font-weight: 500;
+}
+
+.text-label + input {
+    margin-top: 10px;
+}
+
+.text--message {
+    margin-top: 10px;
+}
+
+.text--message.error {
+    color: red;
+}
+.text--message.suceess {
+    color: blue;
+}
+
+/* 별점 */
+.rating {
+    position: relative;
+    display: inline-flex;
+    flex-direction: row-reverse;
+}
+.rating:not(:checked) > input {
+    position: absolute;
+    appearance: none;
+}
+
+.rating:not(:checked) > label {
+    cursor: pointer;
+    font-size: 30px;
+    color: #666;
+}
+
+.rating:not(:checked) > label:before {
+    content: '★';
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked + label:hover ~ label,
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+    color: #e58e09;
+}
+
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+    color: #ff9e0b;
+}
+
+.rating > input:checked ~ label {
+    color: #ffa723;
+}
