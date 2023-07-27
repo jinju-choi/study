@@ -1,0 +1,29 @@
+/* 라디오박스 */
+input[type="radio"] + label {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+}
+.radio {
+    display: inline-block;
+}
+.radio input[type="radio"] + label::before {
+    content: "";
+    display: block;
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    background: url("../../../images/radio-unchecked.svg") no-repeat center;
+}
+
+.radio input[type="radio"]:checked + label::before {
+    background-image: url("../../../images/radio-checked.svg");
+}
+
+.radio input[type="radio"][disabled]:checked + label::before {
+    background-image: url("../../../images/radio-checked-disabled.svg");
+}
+
+.radio input[type="radio"]:disabled + label::before {
+    background-image: url("../../../images/radio-unchecked-disabled.svg");
+}

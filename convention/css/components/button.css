@@ -1,0 +1,53 @@
+/* =============== button =============== */
+.btn-group {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-group .btn {
+    flex: 1;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.btn-l {
+    min-width: 100px;
+}
+.btn-f {
+    width: 100%;
+}
+.btn-m {
+    min-width: 72px;
+}
+
+.btn-s {
+    padding: 6px 12px;
+    font-size: 0.875rem;
+}
+
+.btn:disabled {
+    background: #dddddd;
+}
+
+.btn--primary {
+    background-color: #587fef;
+    color: #ffffff;
+}
+
+.btn--secondaly {
+    border: 1px solid #dddddd;
+}
+
+.btn--danger {
+    background: rgb(255, 119, 119);
+    color: #ffffff;
+}

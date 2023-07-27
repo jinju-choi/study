@@ -1,0 +1,29 @@
+/* 체크박스 */
+input[type="checkbox"] + label {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+}
+.check-box {
+    display: inline-block;
+}
+.check-box  input[type="checkbox"] + label::before {
+    content: "";
+    display: block;
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    background: url("../../../images/checkbox-unchecked.svg") no-repeat center;
+}
+
+.check-box  input[type="checkbox"][disabled]:checked + label::before {
+    background-image: url("../../../images/checkbox-checked-disabled.svg");
+}
+
+.check-box  input[type="checkbox"]:checked + label::before {
+    background-image: url("../../../images/checkbox-checked.svg");
+}
+
+.check-box  input[type="checkbox"]:disabled + label::before {
+    background-image: url("../../../images/checkbox-unchecked-disabled.svg");
+}

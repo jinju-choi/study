@@ -1,0 +1,135 @@
+/* =============== input =============== */
+.normal-input {
+    width: 100%;
+    padding: 6px 16px;
+    border: 1px solid #dddddd;
+}
+
+.input-wrap {
+    /* width: 400px; */
+}
+
+.input-wrap + .input-wrap {
+    margin-top: 15px;
+}
+
+.input-wrap input {
+    width: 100%;
+}
+.input-group {
+    width: 400px;
+    display: flex;
+    align-items: center;
+}
+.input-group .input-wrap {
+    flex-grow: 1;
+    width: auto;
+}
+
+/* input date */
+.input-group.date input {
+    flex: 1;
+}
+
+input[type="date"].date-input {
+    position: relative;
+}
+
+input[type="date"].date-input:invalid:before {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    height: 90%;
+    content: attr(data-placeholder);
+    background: #ffffff;
+    color: #888888;
+}
+
+input[type="date"].date-input:valid::before {
+    display: none;
+}
+
+input[type="date"].date-custom {
+    position: relative;
+    background: url("./images/calendar-days-regular.svg") no-repeat 98% center / 15px;
+}
+input[type="date"].date-custom::-webkit-calendar-picker-indicator {
+    position: absolute; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    color: transparent;
+    cursor: pointer;
+}
+
+
+/* 검색 */
+.search-box {
+    position: relative;
+}
+.search-box input[type="search"] {
+    padding: 6px 40px 6px 16px;
+}
+
+.search-box button {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 40px;
+    height: 100%;
+    background: url("../../../images/icon-search.svg") no-repeat center / 50%;
+    transform: translateY(-50%);
+}
+
+/* 파일 업로드 */
+.upload-box .file-item + .file-item {
+    margin: 8px 0 0;
+}
+
+.upload-box .file-item-delete {
+    width: 16px;
+    height: 16px;
+    text-indent: -9999px;
+    background: url(../../../images/icon-x.svg) no-repeat center / 80%;
+    background-position: center;
+}
+
+/* select */
+select {
+    box-sizing: border-box;
+    display: inline-block;
+    width: 200px;
+    height: 40px;
+    padding: 6px 12px;
+    color: #666;
+    background: url(../../../images/icon-arrow-down.svg) no-repeat;
+    background-position: calc(100% - 12px) center;
+    border: 1px solid #e5e5e5;
+    transition: all .3s;
+}
+
+.hyphen {
+    margin: 0 5px;
+    vertical-align: middle;
+}
+
+.text-label {
+    font-weight: 500;
+}
+
+.text-label + input {
+    margin-top: 10px;
+}
+
+.text--message {
+    margin-top: 10px;
+}
+
+.text--message.error {
+    color: red;
+}
+.text--message.suceess {
+    color: blue;
+}

@@ -1,0 +1,64 @@
+/* 별점 */
+.rating {
+    position: relative;
+    display: inline-flex;
+    flex-direction: row-reverse;
+}
+.rating:not(:checked) > input {
+    position: absolute;
+    appearance: none;
+}
+
+.rating:not(:checked) > label {
+    cursor: pointer;
+    font-size: 30px;
+    color: #666;
+}
+
+.rating:not(:checked) > label:before {
+    content: '★';
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked + label:hover ~ label,
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+    color: #e58e09;
+}
+
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+    color: #ff9e0b;
+}
+
+.rating > input:checked ~ label {
+    color: #ffa723;
+}
+
+/* 별점 표시 */
+.star-rating {
+    position: relative;
+    width: 107px;
+    height: 19px;
+    background: url('../../../images/star-rating-line.svg') no-repeat;
+    background-size: 107px 19px;
+}
+.star-rating .star {
+    width: 107px;
+    height: 19px;
+    background: url('../../../images/star-rating-full.svg') no-repeat;
+    background-size: 107px 19px;
+}
+.scope-average {
+    display: flex;
+    align-items: center;
+}
+.scope-average::before {
+    content: '\f005';
+    display: block;
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    margin-right: 8px;
+    color: #f9a825;
+}

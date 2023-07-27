@@ -11,6 +11,22 @@ select {
     color: #111111;
 }
 
+input[type='email'],
+input[type='password'],
+input[type='search'],
+input[type='submit'],
+input[type='tel'],
+input[type='text'],
+select,
+textarea {
+    -webkit-appearance: none;
+    border-radius: 0;
+}
+
+body {
+    background: #f7f7f1;
+}
+
 a {
     font-size: 16px;
     text-decoration: none;
@@ -18,21 +34,23 @@ a {
 }
 
 /* common */
-.title-text {
+.content-title {
     text-transform: capitalize;
     padding-left: 10px;
     margin: 30px 0 10px;
     font-size: 1.875rem;
     font-weight: 700;
-    border-left: 5px solid #dddddd;
+    border-left: 6px solid #000000;
 }
 
 .code-title {
-    margin: 0 0 10px;
+    margin: 5px 0 13px;
+    font-size: 18px;
+    font-weight: 500;
 }
 
 .code-title::before {
-    content: "·";
+    content: '·';
     margin-right: 5px;
 }
 
@@ -49,7 +67,14 @@ header {
     margin: 0 auto;
 }
 
-.demo-block pre {
+.content-item {
+    padding: 10px;
+    border-radius: 20px;
+    box-shadow: 0 2px 30px rgba(0, 0, 0, 0.16);
+    background: #f7f7f1;
+}
+
+.content-item pre {
     display: none;
     white-space: pre-line;
     margin: 0;
@@ -59,11 +84,11 @@ header {
     overflow: auto;
 }
 
-.demo-block .code code {
+.content-item .code code {
     padding: 0 10px 10px;
 }
 
-.demo-block code .code-indent {
+.content-item code .code-indent {
     display: inline-block;
     width: 30px;
     font-size: 0;
@@ -75,6 +100,11 @@ header {
 
 .flex-group {
     display: flex;
+    gap: 5px;
+}
+
+.flex-group + .flex-group {
+    margin-top: 5px;
 }
 
 .col-group {
@@ -82,9 +112,11 @@ header {
     flex-direction: column;
     flex-grow: 1;
     max-width: 50%;
-    min-width: calc(100% / 3);
-    /* padding: 20px; */
+    min-width: calc(100% / 3 - 10px);
     border: 1px solid #eee;
+    border-radius: 20px;
+    background: #ffffff;
+    overflow: hidden;
 }
 
 .code-box {
@@ -93,25 +125,41 @@ header {
 }
 
 .demo-contents {
-    padding: 20px 10px;
+    padding: 10px;
 }
 
 .code-view-btn {
     width: 100%;
     margin-top: auto;
     padding: 10px;
-    background: #eeeeee;
+    color: #cbcbcb;
 }
 
-.code-view-btn span::after {
-    content: "\f078";
+.code-view-btn:hover,
+.code-view-btn.active {
+    background: #ebebeb;
+}
+
+.code-view-btn span {
+    display: inline-block;
+    width: 0;
+    overflow: hidden;
+    transition: width 0.3s;
+}
+.code-view-btn:hover span,
+.code-view-btn.active span {
+    width: 40px;
+}
+
+.code-view-btn::after {
+    content: '\f078';
     display: inline-block;
     margin-left: 10px;
     font-family: 'Font Awesome 6 Free';
     font-weight: 600;
 }
 
-.code-view-btn.active span::after {
+.code-view-btn.active::after {
     transform: rotate(180deg);
 }
 

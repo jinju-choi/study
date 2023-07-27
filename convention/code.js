@@ -58,11 +58,11 @@ $(function () {
 
 		if ($this.hasClass("active")) {
 			$this.removeClass("active");
-			$this.find("span").text("Expand");
+			$this.find("span").text("code");
 			$this.next().slideUp(100);
 		} else {
 			$this.addClass("active");
-			$this.find("span").text("Hide");
+			$this.find("span").text("hide");
 			$this.next().slideDown(100);
 		}
 	});

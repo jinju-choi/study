@@ -5,21 +5,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Components</title>
         <!-- css -->
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
-            integrity="sha512-NmLkDIU1C/C88wi324HBc+S2kLhi08PN5GDeUVVVC/BVt/9Izdsc9SVeVfA1UZbY3sHUlDSyRXhCzHfr6hmPPw=="
-            crossorigin="anonymous"
-            referrerpolicy="no-referrer"
-        />
-        <link rel="stylesheet" href="./style.css" />
-        <link rel="stylesheet" href="./common.css" />
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
-            integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
-            crossorigin="anonymous"
-            referrerpolicy="no-referrer"
-        ></script>
+        <link rel="stylesheet" href="./css/base/reset.css" />
+        <link rel="stylesheet" href="./css/style.css" />
+        <link rel="stylesheet" href="./css/common.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css" />
         <script src="./code.js"></script>
@@ -31,11 +20,14 @@
     </head>
     <body>
         <header>Components Guide</header>
+        <article>
+            <nav></nav>
+        </article>
         <main class="wrap-container">
             <div class="inner">
-                <h2 class="title-text">button</h2>
-
-                <div class="demo-block">
+                <!-- button -->
+                <h2 class="content-title">button</h2>
+                <div class="content-item">
                     <div class="flex-group">
                         <div class="col-group">
                             <xmp class="code-view-box" data-title="버튼">
@@ -61,14 +53,6 @@
                             </xmp>
                         </div>
                         <div class="col-group">
-                            <xmp class="code-view-box" data-title="버튼 - half">
-                                <div class="btn-group">
-                                    <button class="btn btn--primary">확인</button>
-                                    <button class="btn btn--secondaly">취소</button>
-                                </div>
-                            </xmp>
-                        </div>
-                        <div class="col-group">
                             <xmp class="code-view-box" data-title="버튼 - small">
                                 <button class="btn btn--primary btn-s">버튼</button>
                                 <button class="btn btn--secondaly btn-s">버튼</button>
@@ -76,12 +60,20 @@
                                 <button class="btn btn-s" disabled>버튼</button>
                             </xmp>
                         </div>
+                        <div class="col-group">
+                            <xmp class="code-view-box" data-title="버튼 - half">
+                                <div class="btn-group">
+                                    <button class="btn btn--primary">확인</button>
+                                    <button class="btn btn--secondaly">취소</button>
+                                </div>
+                            </xmp>
+                        </div>
                     </div>
                 </div>
 
-                <!-- form 요소 -->
-                <h2 class="title-text">form</h2>
-                <div class="demo-block">
+                <!-- input 요소 -->
+                <h2 class="content-title">input</h2>
+                <div class="content-item">
                     <div class="flex-group">
                         <div class="col-group">
                             <xmp class="code-view-box" data-title="input">
@@ -91,111 +83,248 @@
                                     <p class="text--message error">에러 메세지 입니다.</p>
                                     <p class="text--message suceess">에러 메세지 입니다.</p>
                                 </div>
+                                <!-- 비활성화 -->
                                 <div class="input-wrap">
-                                    <label for="input-text" class="text-label">내용입력</label>
-                                    <input type="text" id="input-text" class="normal-input" placeholder="내용을 입력하세요." />
+                                    <label for="input-text" class="visually-hidden">내용입력</label>
+                                    <input type="text" id="input-text" class="normal-input" placeholder="내용을 입력하세요." disabled/>
+                                </div>
+                            </xmp>
+                        </div>
+                        <div class="col-group">
+                            <xmp class="code-view-box" data-title="input tel">
+                                <fieldset class="input-group tel">
+                                    <label for="input-text" class="visually-hidden">연락처입력1</label>
+                                    <input type="tel" class="normal-input" />
+                                    <span class="hyphen">-</span>
+                                    <label for="input-text" class="visually-hidden">연락처입력2</label>
+                                    <input type="tel" class="normal-input" />
+                                    <span class="hyphen">-</span>
+                                    <label for="input-text" class="visually-hidden">연락처입력3</label>
+                                    <input type="tel" class="normal-input" />
+                                </fieldset>
+                            </xmp>
+                        </div>
+                    </div>
+                    <div class="flex-group">
+                        <div class="col-group">
+                            <xmp class="code-view-box" data-title="input date">
+                                <div class="input-group date">
+                                    <label for="input-text" class="visually-hidden">날짜 시작 입력</label>
+                                    <input type="date" id="input-date" class="normal-input" />
+                                    <span class="hyphen">~</span>
+                                    <label for="input-text" class="visually-hidden">날짜 종료 입력</label>
+                                    <input type="date" id="input-date" class="normal-input" />
+                                </div>
+                            </xmp>
+                        </div>
+                        <div class="col-group">
+                            <xmp class="code-view-box" data-title="nput date placeholder">
+                                <label for="input-text" class="visually-hidden">날짜 입력</label>
+                                <input type="date" id="input-date" class="normal-input date-input" data-placeholder="yyyy-mm-dd" required />
+                            </xmp>
+                        </div>
+                        <div class="col-group">
+                            <xmp class="code-view-box" data-title="input date custom">
+                                <label for="input-text" class="visually-hidden">날짜 입력</label>
+                                <input type="date" id="input-date" class="normal-input date-custom"/>
+                            </xmp>
+                        </div>
+                    </div>
+                    <div class="flex-group">
+                        <div class="col-group">
+                            <xmp class="code-view-box" data-title="select">
+                                <select name="" id="" class="normal-input">
+                                    <option value="" hidden>옵션을 선택해주세요</option>
+                                    <option value="">옵션1</option>
+                                    <option value="">옵션2</option>
+                                    <option value="">옵션3</option>
+                                </select>
+                            </xmp>
+                        </div>
+                        <div class="col-group">
+                            <xmp class="code-view-box" data-title="search input">
+                                <div class="search-box">
+                                    <input type="search" name="" id="" class="normal-input" placeholder="검색어를 입력하세요">
+                                    <button type="button"><span class="visually-hidden">검색</span></button>
                                 </div>
                             </xmp>
                         </div>
                     </div>
                 </div>
+
+                <!-- checkbox & radi0 -->
+                <h2 class="content-title">check-box & radio</h2>
                 <div class="content-item">
-                    
-                    <ul>
-                        <li>
-                            <h3 class="sub-title-text">- input text</h3>
-                            <div class="input-wrap">
-                                <label for="input-text" class="visually-hidden">내용입력</label>
-                                <input type="text" id="input-text" class="normal-input" placeholder="내용을 입력하세요." />
-                                <p class="text--message error">에러 메세지 입니다.</p>
-                                <p class="text--message suceess">에러 메세지 입니다.</p>
-                            </div>
-                            <div class="input-wrap">
-                                <label for="input-text" class="text-label">내용입력</label>
-                                <input type="text" id="input-text" class="normal-input" placeholder="내용을 입력하세요." />
-                            </div>
-                        </li>
-                        <li>
-                            <h3 class="sub-title-text">input date</h3>
-                            <div class="input-group date">
-                                <div class="input-wrap">
-                                    <label for="input-text" class="visually-hidden">날짜 시작 입력</label>
-                                    <input type="date" id="input-date" class="normal-input" />
+                    <div class="flex-group">
+                        <div class="col-group">
+                            <xmp class="code-view-box" data-title="search input">
+                                <div class="upload-box">
+                                    <input type="file" name="" id="upload-file" class="visually-hidden">
+                                    <label for="upload-file" class="btn btn--secondaly btn-m">파일선택</label>
+                                    <!-- 업로드 파일 있을 때 -->
+                                    <ul class="file-list">
+                                        <li class="file-item">
+                                            <span class="file-item-name">업로드된 파일1</span>
+                                            <button type="button" class="file-item-delete">삭제</button>
+                                        </li>
+                                        <li class="file-item">
+                                            <span class="file-item-name">업로드된 파일2</span>
+                                            <button type="button" class="file-item-delete">삭제</button>
+                                        </li>
+                                    </ul>
                                 </div>
-                                <span class="hyphen">~</span>
-                                <div class="input-wrap">
-                                    <label for="input-text" class="visually-hidden">날짜 종료 입력</label>
-                                    <input type="date" id="input-date" class="normal-input" />
+                            </xmp>
+                        </div>
+                        <div class="col-group">
+                            <xmp class="code-view-box" data-title="별점 주기">
+                                <div class="rating">
+                                    <input type="radio" id="star5" name="rate" value="5" />
+                                    <label for="star5" title="text"></label>
+                                    <input type="radio" id="star4" name="rate" value="4" />
+                                    <label for="star4" title="text"></label>
+                                    <input checked="" type="radio" id="star3" name="rate" value="3" />
+                                    <label for="star3" title="text"></label>
+                                    <input type="radio" id="star2" name="rate" value="2" />
+                                    <label for="star2" title="text"></label>
+                                    <input type="radio" id="star1" name="rate" value="1" />
+                                    <label for="star1" title="text"></label>
                                 </div>
-                            </div>
-                        </li>
-                        <li>
-                            <h3 class="sub-title-text">input date placeholder</h3>
-                            <div class="input-group date">
-                                <div class="input-wrap">
-                                    <label for="input-text" class="visually-hidden">날짜 입력</label>
-                                    <input type="date" id="input-date" class="normal-input" data-placeholder="yyyy-mm-dd" required />
+                            </xmp>
+                        </div>
+                        <div class="col-group">
+                            <xmp class="code-view-box" data-title="별점표시">
+                                <!-- style: width 로 별 표시 -->
+                                <div class="star-rating">
+                                    <div class="star" style="width: 20%"><span class="visually-hidden">평점</span></div>
                                 </div>
-                            </div>
-                        </li>
-                        <li>
-                            <h3 class="sub-title-text">input tel</h3>
-                            <fieldset class="input-group tel">
-                                <div class="input-wrap">
-                                    <label for="input-text" class="visually-hidden">연락처입력1</label>
-                                    <input type="tel" class="normal-input" />
+                            </xmp>
+                        </div>
+                    </div>
+                    <div class="flex-group">
+                        <div class="col-group">
+                            <xmp class="code-view-box" data-title="check-box">
+                                <!-- 기본 -->
+                                <input type="checkbox" name="" id="check-box1"/>
+                                <label for="check-box1">체크박스</label>
+
+                                <!-- 커스텀 -->
+                                <div class="check-box">
+                                    <input type="checkbox" name="" id="check-box2"  class="visually-hidden"/>
+                                    <label for="check-box2">체크박스</label>
                                 </div>
-                                <span class="hyphen">-</span>
-                                <div class="input-wrap">
-                                    <label for="input-text" class="visually-hidden">연락처입력2</label>
-                                    <input type="tel" class="normal-input" />
+                                <div class="check-box">
+                                    <input type="checkbox" name="" id="check-box3"  class="visually-hidden" checked/>
+                                    <label for="check-box3">체크박스</label>
                                 </div>
-                                <span class="hyphen">-</span>
-                                <div class="input-wrap">
-                                    <label for="input-text" class="visually-hidden">연락처입력3</label>
-                                    <input type="tel" class="normal-input" />
+                                <div class="check-box">
+                                    <input type="checkbox" name="" id="check-box4"  class="visually-hidden" disabled/>
+                                    <label for="check-box4">체크박스</label>
                                 </div>
-                            </fieldset>
-                        </li>
-                        <li>
-                            <div class="check-box">
-                                <input type="checkbox" name="" id="check-box" />
-                                <label for="check-box">체크박스</label>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="radio-box">
-                                <input type="radio" name="radio" id="radio-box1" />
+                                <div class="check-box">
+                                    <input type="checkbox" name="" id="check-box3"  class="visually-hidden" checked disabled/>
+                                    <label for="check-box3">체크박스</label>
+                                </div>
+                            </xmp>
+                        </div>
+                        <div class="col-group">
+                            <xmp class="code-view-box" data-title="radio">
+                                <!-- 기본 -->
+                                <input type="radio" name="radio" id="radio-box1"/>
                                 <label for="radio-box1">라디오</label>
-                            </div>
-                            <div class="radio-box">
-                                <input type="radio" name="radio" id="radio-box2" />
-                                <label for="radio-box2">라디오</label>
-                            </div>
-                        </li>
-                        <li>
-                            <select name="" id="" class="normal-input">
-                                <option value="" hidden>옵션을 선택해주세요</option>
-                                <option value="">옵션1</option>
-                                <option value="">옵션2</option>
-                                <option value="">옵션3</option>
-                            </select>
-                        </li>
-                        <li>
-                            <div class="rating">
-                                <input type="radio" id="star5" name="rate" value="5" />
-                                <label for="star5" title="text"></label>
-                                <input type="radio" id="star4" name="rate" value="4" />
-                                <label for="star4" title="text"></label>
-                                <input checked="" type="radio" id="star3" name="rate" value="3" />
-                                <label for="star3" title="text"></label>
-                                <input type="radio" id="star2" name="rate" value="2" />
-                                <label for="star2" title="text"></label>
-                                <input type="radio" id="star1" name="rate" value="1" />
-                                <label for="star1" title="text"></label>
-                            </div>
-                        </li>
-                    </ul>
+
+                                <!-- 커스텀 -->
+                                <div class="radio">
+                                    <input type="radio" name="radio" id="radio-box2" class="visually-hidden"/>
+                                    <label for="radio-box2">라디오</label>
+                                </div>
+                                <div class="radio">
+                                    <input type="radio" name="radio" id="radio-box3" class="visually-hidden" checked/>
+                                    <label for="radio-box3">라디오</label>
+                                </div>
+                                <div class="radio">
+                                    <input type="radio" name="radio" id="radio-box3" class="visually-hidden" disabled/>
+                                    <label for="radio-box3">라디오</label>
+                                </div>
+                                <div class="radio">
+                                    <input type="radio" name="radio" id="radio-box3" class="visually-hidden" checked disabled/>
+                                    <label for="radio-box3">라디오</label>
+                                </div>
+                            </xmp>
+                        </div>
+                    </div>
+                    <div class="flex-group">
+                        <div class="col-group">
+                            <xmp class="code-view-box" data-title="check-box(단독사용)">
+                                <!-- 기본 -->
+                                <input type="checkbox" name="" id="check-box1"/>
+                                <label for="check-box2"><span class="visually-hidden">체크박스</span></label>
+
+                                <!-- 커스텀 -->
+                                <div class="check-box">
+                                    <input type="checkbox" name="" id="check-box2"  class="visually-hidden"/>
+                                    <label for="check-box2"><span class="visually-hidden">체크박스 1</span></label>
+                                </div>
+                                <div class="check-box">
+                                    <input type="checkbox" name="" id="check-box3"  class="visually-hidden" checked/>
+                                    <label for="check-box3"><span class="visually-hidden">체크박스 2</span></label>
+                                </div>
+                                <div class="check-box">
+                                    <input type="checkbox" name="" id="check-box4"  class="visually-hidden" disabled/>
+                                    <label for="check-box4"><span class="visually-hidden">체크박스 3</span></label>
+                                </div>
+                                <div class="check-box">
+                                    <input type="checkbox" name="" id="check-box5"  class="visually-hidden" checked disabled/>
+                                    <label for="check-box5"><span class="visually-hidden">체크박스 4</span></label>
+                                </div>
+                            </xmp>
+                        </div>
+                        <div class="col-group">
+                            <xmp class="code-view-box" data-title="radio(단독사용)">
+                                <!-- 기본 -->
+                                <input type="radio" name="radio-one" id="radio-one1"/>
+                                <label for="radio-one1"><span class="visually-hidden">라디오</span></label>
+
+                                <!-- 커스텀 -->
+                                <div class="radio">
+                                    <input type="radio" name="radio-one" id="radio-one2" class="visually-hidden"/>
+                                    <label for="radio-one2"><span class="visually-hidden">라디오</span></label>
+                                </div>
+                                <div class="radio">
+                                    <input type="radio" name="radio-one" id="radio-one3" class="visually-hidden" checked/>
+                                    <label for="radio-one3"><span class="visually-hidden">라디오</span></label>
+                                </div>
+                                <div class="radio">
+                                    <input type="radio" name="radio-one" id="radio-one3" class="visually-hidden" disabled/>
+                                    <label for="radio-one3"><span class="visually-hidden">라디오</span></label>
+                                </div>
+                                <div class="radio">
+                                    <input type="radio" name="radio-one" id="radio-one3" class="visually-hidden" checked disabled/>
+                                    <label for="radio-one3"><span class="visually-hidden">라디오</span></label>
+                                </div>
+                            </xmp>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="content-title">tab</h2>
+                <div class="content-item">
+                    <div class="flex-group">
+                        <div class="col-group">
+                            <xmp class="code-view-box" data-title="check-box"></xmp>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ------------------------------------------ -->
+                <div class="flex-group">
+                    <div class="col-group">
+                        <xmp class="code-view-box" data-title="check-box"></xmp>
+                    </div>
+                </div>
+                <!-- ------------------------------------------- -->
+
+                <div class="content-item">
+
                 </div>
 
                 <!-- tab -->
@@ -208,22 +337,10 @@
                         <li class="tab-item"><a href="#">tab4</a></li>
                     </ul>
                     <ul class="tab-contents-wrap">
-                        <li class="tab-content">
-                            탭 내용입니다. 탭 내용입니다. 탭 내용입니다. 탭 내용입니다. 탭 내용입니다.탭 내용입니다.탭 내용입니다. 탭 내용입니다. 탭 내용입니다. 탭 내용입니다. 탭 내용입니다. 탭
-                            내용입니다.
-                        </li>
-                        <li class="tab-content">
-                            탭 내용입니다. 탭 내용입니다. 탭 내용입니다. 탭 내용입니다. 탭 내용입니다.탭 내용입니다.탭 내용입니다. 탭 내용입니다. 탭 내용입니다. 탭 내용입니다. 탭 내용입니다. 탭
-                            내용입니다.
-                        </li>
-                        <li class="tab-content">
-                            탭 내용입니다. 탭 내용입니다. 탭 내용입니다. 탭 내용입니다. 탭 내용입니다.탭 내용입니다.탭 내용입니다. 탭 내용입니다. 탭 내용입니다. 탭 내용입니다. 탭 내용입니다. 탭
-                            내용입니다.
-                        </li>
-                        <li class="tab-content">
-                            탭 내용입니다. 탭 내용입니다. 탭 내용입니다. 탭 내용입니다. 탭 내용입니다.탭 내용입니다.탭 내용입니다. 탭 내용입니다. 탭 내용입니다. 탭 내용입니다. 탭 내용입니다. 탭
-                            내용입니다.
-                        </li>
+                        <li class="tab-content">탭 내용입니다. 탭 내용입니다. 탭 내용입니다. 탭 내용입니다. 탭 내용입니다.탭 내용입니다.탭 내용입니다. 탭 내용입니다. 탭 내용입니다. 탭 내용입니다. 탭 내용입니다. 탭 내용입니다.</li>
+                        <li class="tab-content">탭 내용입니다. 탭 내용입니다. 탭 내용입니다. 탭 내용입니다. 탭 내용입니다.탭 내용입니다.탭 내용입니다. 탭 내용입니다. 탭 내용입니다. 탭 내용입니다. 탭 내용입니다. 탭 내용입니다.</li>
+                        <li class="tab-content">탭 내용입니다. 탭 내용입니다. 탭 내용입니다. 탭 내용입니다. 탭 내용입니다.탭 내용입니다.탭 내용입니다. 탭 내용입니다. 탭 내용입니다. 탭 내용입니다. 탭 내용입니다. 탭 내용입니다.</li>
+                        <li class="tab-content">탭 내용입니다. 탭 내용입니다. 탭 내용입니다. 탭 내용입니다. 탭 내용입니다.탭 내용입니다.탭 내용입니다. 탭 내용입니다. 탭 내용입니다. 탭 내용입니다. 탭 내용입니다. 탭 내용입니다.</li>
                     </ul>
                 </div>
 
