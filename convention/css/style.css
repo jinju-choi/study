@@ -34,10 +34,13 @@ a {
 }
 
 /* common */
+.wrap-container {
+    padding: 50px 0;
+}
 .content-title {
     text-transform: capitalize;
     padding-left: 10px;
-    margin: 30px 0 10px;
+    margin: 0 0 16px;
     font-size: 1.875rem;
     font-weight: 700;
     border-left: 6px solid #000000;
@@ -45,8 +48,11 @@ a {
 
 .code-title {
     margin: 5px 0 13px;
+    padding-bottom: 14px;
+    text-transform: uppercase;
     font-size: 18px;
     font-weight: 500;
+    border-bottom: 1px solid #f6f6f0;
 }
 
 .code-title::before {
@@ -68,6 +74,7 @@ header {
 }
 
 .content-item {
+    margin-bottom: 50px;
     padding: 10px;
     border-radius: 20px;
     box-shadow: 0 2px 30px rgba(0, 0, 0, 0.16);
@@ -100,6 +107,7 @@ header {
 
 .flex-group {
     display: flex;
+    align-items: flex-start;
     gap: 5px;
 }
 
@@ -130,7 +138,6 @@ header {
 
 .code-view-btn {
     width: 100%;
-    margin-top: auto;
     padding: 10px;
     color: #cbcbcb;
 }

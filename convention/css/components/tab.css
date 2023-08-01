@@ -1,0 +1,26 @@
+.tab-btn-list {
+    display: flex;
+}
+.tab-btn-list .tab-btn {
+    flex-grow: 1;
+}
+
+.tab-btn-list .tab-btn a {
+    display: block;
+    padding: 16px 10px;
+    text-align: center;
+    background: #dddddd;
+    border-radius: 10px 10px 0 0;
+}
+
+.tab-btn-list .tab-btn.on a {
+    background: #587fef;
+    color: #ffffff;
+}
+
+.tab-contents-wrap .tab-content {
+    display: none;
+}
+.tab-contents-wrap .tab-content.on {
+    display: block;
+}

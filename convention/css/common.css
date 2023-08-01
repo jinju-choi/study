@@ -1,10 +1,11 @@
 /* import */
 @import "./components/button.css";
-@import "./components/form.css";
 @import "./components/input/input.css";
 @import "./components/input/input-check.css";
 @import "./components/input/input-radio.css";
+@import "./components/input/switch.css";
 @import "./components/input/star-rating.css";
+@import "./components/tab.css";
 
 .visually-hidden {
     position: absolute !important;
