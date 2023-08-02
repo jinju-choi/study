@@ -8,14 +8,13 @@ class Tab {
         };
         const resultOtp = { ...this.defaultOtp, ...option };
         this.frame = document.querySelector(selector);
-        console.log(this);
         this.btns = this.frame.querySelector(resultOtp.btns);
         this.boxs = this.frame.querySelectorAll(resultOtp.boxs);
         this.activeClass = resultOtp.activeClass;
 
         let spanEl = document.createElement('span');
         let spanText = document.createTextNode('선택됨');
-        spanEl.classList.add('skip');
+        spanEl.classList.add('visually-hidden');
         spanEl.appendChild(spanText);
         this.addSelectedText(this.btns.querySelectorAll('li')[0].querySelector('a'));
         this.bindingEvent();
@@ -24,7 +23,7 @@ class Tab {
     addSelectedText(target) {
         let spanEl = document.createElement('span');
         let spanText = document.createTextNode('선택됨');
-        spanEl.classList.add('skip');
+        spanEl.classList.add('visually-hidden');
         spanEl.appendChild(spanText);
         target.append(spanEl);
     }

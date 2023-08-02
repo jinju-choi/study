@@ -1,0 +1,48 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+.pagination .page-btn {
+    display: block;
+    width: 25px;
+    height: 25px;
+    border: 1px solid #ddd;
+    background-image: url("../../images/chevron-right-solid.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 80%;
+}
+.pagination .prev {
+    transform: rotate(-180deg);
+}
+.pagination .first {
+    transform: rotate(-180deg);
+    background-image: url("../../images/angles-right-solid.svg");
+}
+.pagination .last {
+    background-image: url("../../images/angles-right-solid.svg");
+}
+.pagination .page-list {
+    display: flex;
+    gap: 5px;
+}
+.pagination .page-item {
+    transition: 0.3s;
+}
+.pagination .page-item.active {
+    background: #587fef;
+}
+.pagination .page-item.active a {
+    color: #ffffff;
+}
+.pagination .page-item a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 25px;
+    padding: 5px;
+}
+.pagination {
+
+}

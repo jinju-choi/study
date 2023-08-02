@@ -71,6 +71,7 @@ header {
 .inner {
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 16px;
 }
 
 .content-item {
@@ -83,7 +84,7 @@ header {
 
 .content-item pre {
     display: none;
-    white-space: pre-line;
+    /* white-space: pre-line; */
     margin: 0;
     padding: 0;
     line-height: 1.3;
@@ -125,6 +126,10 @@ header {
     border-radius: 20px;
     background: #ffffff;
     overflow: hidden;
+}
+
+.col-group.full {
+    min-width: 100%;
 }
 
 .code-box {
@@ -177,4 +182,14 @@ header {
 
 .code-view-box.active {
     display: block;
+}
+
+
+@media all and (max-width: 768px) {
+    .flex-group {
+        flex-wrap: wrap;
+    }
+    .col-group {
+        min-width: 100%;
+    }
 }
