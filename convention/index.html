@@ -13,34 +13,17 @@
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css" />
         <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
         <script src="./code.js"></script>
-        <script src="./wvScript.js"></script>
+        <script defer src="./wvScript.js"></script>
         <script src="./js/components/tab.js"></script>
-        <script>
-            const dd = document.getElementById('dd');
-            document.addEventListener('DOMContentLoaded', () => {
-                // new Tab('#normal-tab');
-                alert("DOM이 준비되었습니다!");
-            });
-            window.addEventListener('load', () => {
-                // new Tab('#normal-tab');
-                alert("load 되었습니다!");
-                    dd.addEventListener('click', function(){
-                        console.log("dddd");
-                    })
-            });
-            // dd.addEventListener('DOMContentLoaded', () => {
-            // });
-
-
-        </script>
+        <script src="./js/components/slideup.js"></script>
     </head>
     <body>
         <header>WV Components Guide</header>
-        <article>
-            <nav></nav>
-        </article>
         <main class="wrap-container">
-            <div class="inner">
+            <article class="navigation">
+                <ul class="navigation-list"></ul>
+            </article>
+            <div class="content-inner">
                 <!-- button -->
                 <h2 class="content-title">button</h2>
                 <div class="content-item">
@@ -50,7 +33,7 @@
 <button class="btn btn--primary btn-l">버튼</button>
 <button class="btn btn--secondaly btn-l">버튼</button>
 <button class="btn btn--danger btn-l">버튼</button>
-<button class="btn btn-l" disabled>버튼</button>
+<button class="btn btn--danger btn-l" disabled>버튼</button>
                             </xmp>
                         </div>
                         <div class="col-group">
@@ -229,8 +212,12 @@
                         <div class="col-group">
                             <xmp class="code-view-box" data-title="input tel">
                                 <fieldset class="input-group tel">
-                                    <label for="input-text" class="visually-hidden">연락처입력1</label>
-                                    <input type="tel" class="normal-input" />
+                                    <select name="" id="" class="select">
+                                        <option value="" hidden>010</option>
+                                        <option value="">옵션1</option>
+                                        <option value="">옵션2</option>
+                                        <option value="">옵션3</option>
+                                    </select>
                                     <span class="hyphen">-</span>
                                     <label for="input-text" class="visually-hidden">연락처입력2</label>
                                     <input type="tel" class="normal-input" />
@@ -536,7 +523,7 @@
                                         <tbody>
                                             <tr>
                                                 <td class="tb-none">1</td>
-                                                <td class="tb-full">게시판 제목입니다</td>
+                                                <td class="tb-full"><a href="">게시판 제목입니다</a></td>
                                                 <td class="tb-text-center">yes</td>
                                                 <td class="tb-text-right">2023.07.05</td>
                                             </tr>
@@ -702,7 +689,7 @@
                             <xmp class="code-view-box" data-title="accordion">
                                 <div class="accordion">
                                     <ul>
-                                        <li class="item active" id="dd">
+                                        <li class="item active">
                                             <a href="javascript:void(0)" class="title">title</a>
                                             <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, temporibus unde voluptatem voluptatibus quaerat accusamus ratione modi iure architecto optio natus magni ducimus? Ipsa nam asperiores libero explicabo, odit blanditiis nostrum perspiciatis ipsum doloremque tempore aliquam recusandae assumenda. Deserunt delectus ipsam omnis, accusamus quasi earum ut sequi dolorem nam, odit dolor. Nisi hic delectus deleniti id minus nam fugiat a quae aspernatur sed, vero maiores necessitatibus </div>
                                         </li>
@@ -731,6 +718,10 @@
             </div>
         </main>
 
-
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                new Tab('#normal-tab');
+            });
+        </script>
     </body>
 </html>

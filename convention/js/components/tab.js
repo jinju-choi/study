@@ -11,7 +11,6 @@ class Tab {
         this.btns = this.frame.querySelector(resultOtp.btns);
         this.boxs = this.frame.querySelectorAll(resultOtp.boxs);
         this.activeClass = resultOtp.activeClass;
-
         let spanEl = document.createElement('span');
         let spanText = document.createTextNode('선택됨');
         spanEl.classList.add('visually-hidden');
@@ -43,8 +42,8 @@ class Tab {
         });
 
         //탭 개수 파악 후 5개 이상일 경우 vertical-mode 클래스 추가
-        const tabItemLength = document.querySelectorAll('.tabBoxLine > ul > li').length;
-        tabItemLength >= 5 && this.btns.classList.add('vertical-mode');
+        // const tabItemLength = document.querySelectorAll('.tabBoxLine > ul > li').length;
+        // tabItemLength >= 5 && this.btns.classList.add('vertical-mode');
     }
 
     removeSelectedText() {

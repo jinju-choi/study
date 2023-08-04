@@ -172,6 +172,15 @@ input[type="date"].date-custom::-webkit-calendar-picker-indicator {
     gap: 5px;
 }
 
+/* 연락처 입력 */
+.input-group.tel .select {
+    width: 30%;
+}
+
+.input-group.tel input {
+    width: 30%;
+}
+
 /* input text */
 .hyphen {
     margin: 0 5px;
