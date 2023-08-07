@@ -13,9 +13,8 @@
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css" />
         <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
         <script src="./code.js"></script>
-        <script defer src="./wvScript.js"></script>
+        <script src="./wvScript.js"></script>
         <script src="./js/components/tab.js"></script>
-        <script src="./js/components/slideup.js"></script>
     </head>
     <body>
         <header>WV Components Guide</header>
@@ -489,7 +488,7 @@
                                         <div class="tab-content">탭 내용입니다.3 탭 내용입니다. 탭 내용입니다. 탭 내용입니다. 탭 내용입니다.탭 내용입니다.탭 내용입니다. 탭 내용입니다. 탭 내용입니다. 탭 내용입니다. 탭 내용입니다. 탭 내용입니다.</div>
                                         <div class="tab-content">탭 내용입니다.4 탭 내용입니다. 탭 내용입니다. 탭 내용입니다. 탭 내용입니다.탭 내용입니다.탭 내용입니다. 탭 내용입니다. 탭 내용입니다. 탭 내용입니다. 탭 내용입니다. 탭 내용입니다.</div>
                                     </div>
-                                </div>                        
+                                </div>
                             </div>
                         </div>
                         <div class="col-group">
@@ -654,10 +653,10 @@
                     <div class="flex-group">
                         <div class="col-group">
                             <xmp class="code-view-box" data-title="modal">
-                                <button class="btn btn--primary btn-l">모달창 오픈</button>
-                                <div class="modal">
+                                <button class="btn btn--primary btn-l modal-open-btn return-focus" onclick="modalOpen('modal-sample1')">모달창 오픈</button>
+                                <div id="modal-sample1" class="modal">
                                     <div class="modal-box">
-                                        <button type="button" class="modal-close-btn">
+                                        <button type="button" class="modal-close-btn" onclick="modalClose('modal-sample1')">
                                             <span class="visually-hidden">닫기버튼</span>
                                         </button>
                                         <div class="modal-head">
@@ -672,7 +671,7 @@
                                         </div>
                                         <div class="modal-foot">
                                             <button class="btn btn--primary btn-l">확인</button>
-                                            <button class="btn btn--secondaly btn-l">취소</button>
+                                            <button class="btn btn--secondaly btn-l" onclick="modalClose('modal-sample1')">취소</button>
                                         </div>
                                     </div>
                                 </div>
@@ -687,14 +686,48 @@
                     <div class="flex-group">
                         <div class="col-group">
                             <xmp class="code-view-box" data-title="accordion">
-                                <div class="accordion">
+                                <div class="accordion accordion-several">
                                     <ul>
-                                        <li class="item active">
-                                            <a href="javascript:void(0)" class="title">title</a>
+                                        <li class="item">
+                                            <a href="javascript:void(0)" class="title">title <span class="visually-hidden">닫기</span></a>
                                             <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, temporibus unde voluptatem voluptatibus quaerat accusamus ratione modi iure architecto optio natus magni ducimus? Ipsa nam asperiores libero explicabo, odit blanditiis nostrum perspiciatis ipsum doloremque tempore aliquam recusandae assumenda. Deserunt delectus ipsam omnis, accusamus quasi earum ut sequi dolorem nam, odit dolor. Nisi hic delectus deleniti id minus nam fugiat a quae aspernatur sed, vero maiores necessitatibus </div>
                                         </li>
                                         <li class="item">
-                                            <a href="javascript:void(0)" class="title">title</a>
+                                            <a href="javascript:void(0)" class="title">title <span class="visually-hidden">닫기</span></a>
+                                            <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, temporibus unde voluptatem voluptatibus quaerat accusamus ratione modi iure architecto optio natus magni ducimus? Ipsa nam asperiores libero explicabo, odit blanditiis nostrum perspiciatis ipsum doloremque tempore aliquam recusandae assumenda. Deserunt delectus ipsam omnis, accusamus quasi earum ut sequi dolorem nam, odit dolor. Nisi hic delectus deleniti id minus nam fugiat a quae aspernatur sed, vero maiores necessitatibus </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </xmp>
+                        </div>
+                        <div class="col-group">
+                            <xmp class="code-view-box" data-title="accordion 하나씩만 펼쳐지기">
+                                <div class="accordion accordion-basic">
+                                    <ul>
+                                        <li class="item">
+                                            <a href="javascript:void(0)" class="title">title <span class="visually-hidden">닫기</span></a>
+                                            <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, temporibus unde voluptatem voluptatibus quaerat accusamus ratione modi iure architecto optio natus magni ducimus? Ipsa nam asperiores libero explicabo, odit blanditiis nostrum perspiciatis ipsum doloremque tempore aliquam recusandae assumenda. Deserunt delectus ipsam omnis, accusamus quasi earum ut sequi dolorem nam, odit dolor. Nisi hic delectus deleniti id minus nam fugiat a quae aspernatur sed, vero maiores necessitatibus </div>
+                                        </li>
+                                        <li class="item">
+                                            <a href="javascript:void(0)" class="title">title <span class="visually-hidden">닫기</span></a>
+                                            <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, temporibus unde voluptatem voluptatibus quaerat accusamus ratione modi iure architecto optio natus magni ducimus? Ipsa nam asperiores libero explicabo, odit blanditiis nostrum perspiciatis ipsum doloremque tempore aliquam recusandae assumenda. Deserunt delectus ipsam omnis, accusamus quasi earum ut sequi dolorem nam, odit dolor. Nisi hic delectus deleniti id minus nam fugiat a quae aspernatur sed, vero maiores necessitatibus </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </xmp>
+                        </div>
+                    </div>
+                    <div class="flex-group">
+                        <div class="col-group">
+                            <xmp class="code-view-box" data-title="accordion 슬라이드다운">
+                                <div class="accordion accordion-slide">
+                                    <ul>
+                                        <li class="item">
+                                            <a href="javascript:void(0)" class="title">title <span class="visually-hidden">닫기</span></a>
+                                            <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, temporibus unde voluptatem voluptatibus quaerat accusamus ratione modi iure architecto optio natus magni ducimus? Ipsa nam asperiores libero explicabo, odit blanditiis nostrum perspiciatis ipsum doloremque tempore aliquam recusandae assumenda. Deserunt delectus ipsam omnis, accusamus quasi earum ut sequi dolorem nam, odit dolor. Nisi hic delectus deleniti id minus nam fugiat a quae aspernatur sed, vero maiores necessitatibus </div>
+                                        </li>
+                                        <li class="item">
+                                            <a href="javascript:void(0)" class="title">title <span class="visually-hidden">닫기</span></a>
                                             <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, temporibus unde voluptatem voluptatibus quaerat accusamus ratione modi iure architecto optio natus magni ducimus? Ipsa nam asperiores libero explicabo, odit blanditiis nostrum perspiciatis ipsum doloremque tempore aliquam recusandae assumenda. Deserunt delectus ipsam omnis, accusamus quasi earum ut sequi dolorem nam, odit dolor. Nisi hic delectus deleniti id minus nam fugiat a quae aspernatur sed, vero maiores necessitatibus </div>
                                         </li>
                                     </ul>
@@ -722,6 +755,75 @@
             document.addEventListener('DOMContentLoaded', () => {
                 new Tab('#normal-tab');
             });
+
+            window.addEventListener('scroll', () => {
+                let win_y = Math.floor(window.scrollY || document.documentElement.scrollTop);
+                onScroll();
+                navAct(win_y);
+            });
+
+            // 프로그레스 바
+            const progressContainer = document.createElement('div');
+            const progressBar = document.createElement('div');
+            progressContainer.className = 'progress-container';
+            progressBar.className = 'progress-bar';
+
+            document.body.append(progressContainer);
+            progressContainer.append(progressBar);
+
+            const onScroll = () => {
+                const scrollTop = document.documentElement.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+
+                const scrollWidth = (scrollTop / height) * 100;
+                progressBar.style.width = scrollWidth + '%';
+            };
+
+            // 네비게이션
+            const contentTitle = document.querySelectorAll('.content-title');
+            const navigationBox = document.querySelector('.navigation-list');
+
+            if (contentTitle) {
+                contentTitle.forEach((title) => {
+                    const li = document.createElement('li');
+                    const a = document.createElement('a');
+
+                    a.setAttribute('href', '');
+                    li.append(a);
+                    a.append(title.textContent);
+                    navigationBox.append(li);
+
+                    navScroll(title);
+                });
+            }
+
+            function navScroll(tit) {
+                const navItem = document.querySelectorAll('.navigation-list li');
+                navItem.forEach((item) => {
+                    item.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        if (item.textContent == tit.textContent) {
+                            let titleTop = tit.offsetTop ;
+                            window.scrollTo({ top: titleTop - window.innerHeight /5, behavior: 'smooth' });
+                        }
+                    });
+                });
+            }
+
+            function navAct(winy) {
+                let navLi = document.getElementsByClassName('navigation-list')[0].children;
+
+                contentTitle.forEach((el, index) => {
+                    let titleTop = el.offsetTop - window.innerHeight /3;
+
+                    if (titleTop <= winy) {
+                        Array.from(navLi).forEach((el) => {
+                            el.classList.remove('active');
+                        });
+                        navLi[index].classList.add('active');
+                    }
+                });
+            }
         </script>
     </body>
 </html>
