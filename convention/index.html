@@ -29,10 +29,11 @@
                     <div class="flex-group">
                         <div class="col-group">
                             <xmp class="code-view-box" data-title="버튼">
-<button class="btn btn--primary btn-l">버튼</button>
-<button class="btn btn--secondaly btn-l">버튼</button>
-<button class="btn btn--danger btn-l">버튼</button>
-<button class="btn btn--danger btn-l" disabled>버튼</button>
+<button type="button" class="btn btn--primary btn-l">버튼</button>
+<button type="button" class="btn btn--secondaly btn-l">버튼</button>
+<button type="button" class="btn btn--danger btn-l">버튼</button>
+<button type="button" class="btn btn--danger btn-l" disabled>버튼</button>
+<a href="" class="btn--link">링크버튼</a>
                             </xmp>
                         </div>
                         <div class="col-group">
@@ -106,7 +107,7 @@
                             </xmp>
                         </div>
                         <div class="col-group">
-                            <xmp class="code-view-box" data-title="nput date placeholder">
+                            <xmp class="code-view-box" data-title="input date placeholder">
                                 <label for="input-text" class="visually-hidden">날짜 입력</label>
                                 <input type="date" id="input-date" class="normal-input date-input" data-placeholder="yyyy-mm-dd" required />
                             </xmp>
@@ -598,6 +599,21 @@
                             </xmp>
                         </div>
                     </div>
+                    <div class="flex-group">
+                        <div class="col-group full">
+                            <xmp class="code-view-box" data-title="건수 및 정렬">
+                                <div class="list-top-group">
+                                    <div class="list-total">
+                                        총 <strong>70</strong>건
+                                    </div>
+                                    <div class="sort-list">                        
+                                        <a href="javascript:void(0)" class="sort-item on down">최신순<span class="visually-hidden">선택됨</span></a>
+                                        <a href="javascript:void(0)" class="sort-item down">인기순</a>
+                                    </div>
+                                </div>
+                            </xmp>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- pagination -->
@@ -653,10 +669,10 @@
                     <div class="flex-group">
                         <div class="col-group">
                             <xmp class="code-view-box" data-title="modal">
-                                <button class="btn btn--primary btn-l modal-open-btn return-focus" onclick="modalOpen('modal-sample1')">모달창 오픈</button>
+                                <button class="btn btn--primary btn-l modal-open-btn return-focus" onclick="openModal('modal-sample1')">모달창 오픈</button>
                                 <div id="modal-sample1" class="modal">
                                     <div class="modal-box">
-                                        <button type="button" class="modal-close-btn" onclick="modalClose('modal-sample1')">
+                                        <button type="button" class="modal-close-btn" onclick="closeModal('modal-sample1')">
                                             <span class="visually-hidden">닫기버튼</span>
                                         </button>
                                         <div class="modal-head">
@@ -671,7 +687,7 @@
                                         </div>
                                         <div class="modal-foot">
                                             <button class="btn btn--primary btn-l">확인</button>
-                                            <button class="btn btn--secondaly btn-l" onclick="modalClose('modal-sample1')">취소</button>
+                                            <button class="btn btn--secondaly btn-l" onclick="closeModal('modal-sample1')">취소</button>
                                         </div>
                                     </div>
                                 </div>
@@ -737,6 +753,24 @@
                     </div>
                 </div>
 
+                <!-- dropdown toggle -->
+                <h2 class="content-title">dropdown toggle</h2>
+                <div class="content-item">
+                    <div class="flex-group">
+                        <div class="col-group">
+                            <xmp class="code-view-box" data-title="dropdown toggle">
+                                <div class="dropdown-toggle-group">
+                                    <button type="button" class="dropdown-toggle btn btn--secondaly">드롭다운</button>
+                                    <ul class="dropdown-menu">
+                                        <li class="menu-item"><a href="">옵션 1</a></li>
+                                        <li class="menu-item"><a href="">옵션 2</a></li>
+                                        <li class="menu-item"><a href="">옵션 3</a></li>
+                                    </ul>
+                                </div>
+                            </xmp>
+                        </div>
+                    </div>
+                </div>
                 <!-- ------------------------------------------ -->
                 <!-- sample -->
                 <h2 class="content-title">sample</h2>
@@ -762,7 +796,7 @@
                 navAct(win_y);
             });
 
-            // 프로그레스 바
+            // 프로그레스 바 생성 및 스크롤에 따른 너비 설정
             const progressContainer = document.createElement('div');
             const progressBar = document.createElement('div');
             progressContainer.className = 'progress-container';
@@ -779,11 +813,12 @@
                 progressBar.style.width = scrollWidth + '%';
             };
 
-            // 네비게이션
+            // 네비게이션 생성 및 스크롤 기능 설정
             const contentTitle = document.querySelectorAll('.content-title');
             const navigationBox = document.querySelector('.navigation-list');
 
             if (contentTitle) {
+                // 콘텐츠 제목 요소가 존재할 경우에만 실행
                 contentTitle.forEach((title) => {
                     const li = document.createElement('li');
                     const a = document.createElement('a');
@@ -796,31 +831,33 @@
                     navScroll(title);
                 });
             }
-
+            
+            // 네비게이션 클릭 시 스크롤 기능 설정
             function navScroll(tit) {
                 const navItem = document.querySelectorAll('.navigation-list li');
                 navItem.forEach((item) => {
                     item.addEventListener('click', function (e) {
                         e.preventDefault();
                         if (item.textContent == tit.textContent) {
-                            let titleTop = tit.offsetTop ;
-                            window.scrollTo({ top: titleTop - window.innerHeight /5, behavior: 'smooth' });
+                            let titleTop = tit.offsetTop;
+                            window.scrollTo({ top: titleTop - window.innerHeight / 5, behavior: 'smooth' });
                         }
                     });
                 });
             }
 
+            // 현재 스크롤 위치에 따른 네비게이션 활성화 설정
             function navAct(winy) {
-                let navLi = document.getElementsByClassName('navigation-list')[0].children;
+                const navLinks = document.querySelectorAll('.navigation-list li');
 
                 contentTitle.forEach((el, index) => {
-                    let titleTop = el.offsetTop - window.innerHeight /3;
+                    let titleTop = el.offsetTop - window.innerHeight / 3;
 
                     if (titleTop <= winy) {
-                        Array.from(navLi).forEach((el) => {
-                            el.classList.remove('active');
+                        navLinks.forEach((link) => {
+                            link.classList.remove('active');
                         });
-                        navLi[index].classList.add('active');
+                        navLinks[index].classList.add('active');
                     }
                 });
             }

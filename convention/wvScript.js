@@ -2,109 +2,121 @@ document.addEventListener('DOMContentLoaded', () => {
     accordionSeveral();
     accordionBasic();
     accordionSlide()
+    sortList();
+    dropDownToggle();
 })
 
+// 공통 함수 - 아코디언 상태 변경
+function toggleAccordion(target, skip) {
+    if (target.classList.contains('active')) {
+        target.classList.remove('active');
+        skip.textContent = '열기';
+    } else {
+        target.classList.add('active');
+        skip.textContent = '닫기';
+    }
+}
+
+// 아코디언 초기화
+function resetAccordion(accordionItems) {
+    accordionItems.forEach((item) => {
+        item.classList.remove('active');
+        item.querySelector('.visually-hidden').textContent = '열기';
+    });
+}
+
 // 아코디언 중복
-function accordionSeveral () {
+function accordionSeveral() {
     const accordion = document.querySelectorAll('.accordion-several .title');
-    
-    if(accordion){
-        accordion.forEach((el)=> {
-            el.addEventListener('click', function(e){
+
+    if (accordion) {
+        accordion.forEach((el) => {
+            el.addEventListener('click', function (e) {
                 const accordionItem = el.parentElement;
                 const skipText = el.querySelector('.visually-hidden');
-                
-                classCheck(accordionItem, skipText);
-            })
-        })
+                toggleAccordion(accordionItem, skipText);
+            });
+        });
     }
-    
 }
 
 // 아코디언 하나씩만
 function accordionBasic() {
     const accordion = document.querySelectorAll('.accordion-basic .title');
-    const accordionLi = document.querySelectorAll('.accordion-basic .item');
-    
-    if(accordion){
-        accordion.forEach((el)=> {
-            el.addEventListener('click', function(e){
+    const accordionItems = document.querySelectorAll('.accordion-basic .item');
+
+    if (accordion) {
+        accordion.forEach((el) => {
+            el.addEventListener('click', function (e) {
                 const accordionItem = el.parentElement;
                 const skipText = el.querySelector('.visually-hidden');
-
-                
-                if(!accordionItem.classList.contains('active')){
-                    accordionLi.forEach((el)=> {
-                        el.classList.remove('active');
-                        el.querySelector('.visually-hidden').textContent = '열기'
-                    })
+        
+                // resetAccordion(accordionItems);
+                accordionItems.forEach((item) => {
+                    item.classList.remove('active');
+                    item.querySelector('.visually-hidden').textContent = '열기';
+                });
+                // toggleAccordion(accordionItem, skipText);
+                if (accordionItem.classList.contains('active')) {
+                    accordionItem.classList.remove('active');
+                    skipText.textContent = '열기';
+                } else {
+                    accordionItem.classList.add('active');
+                    skipText.textContent = '닫기';
                 }
-                classCheck(accordionItem, skipText);
-            })
-        })
+            });
+        });
     }
-    
 }
 
 // 아코디언 슬라이드 다운
 function accordionSlide() {
-    const accordion = document.querySelectorAll('.accordion-slide .title');
-    const accordionLi = document.querySelectorAll('.accordion-slide .item');
-    
-    if(accordion){
-        accordion.forEach((el)=> {
-            el.addEventListener('click', function(e){
+const accordion = document.querySelectorAll('.accordion-slide .title');
+
+    if (accordion) {
+        accordion.forEach((el) => {
+            el.addEventListener('click', function (e) {
                 const accordionItem = el.parentElement;
                 const skipText = el.querySelector('.visually-hidden');
                 const contents = el.nextElementSibling;
-                
+
                 slideToggle(contents, 500, 'active');
-                classCheck(accordionItem, skipText);
-            })
-        })
-    }
-    
-}
-
-let classCheck = (target, skip) => {
-    if(target.classList.contains('active')){
-        target.classList.remove('active');
-        skip.textContent = '열기'
-    } else {
-        target.classList.add('active');
-        skip.textContent = '닫기'
+                toggleAccordion(accordionItem, skipText);
+            });
+        });
     }
 }
-
 
 // 팝업 열기
-function modalOpen(name) {
-    const modalName = `#${name}`;
-    const modalTarget = document.querySelector(modalName);
+function openModal(name) {
+    const modalTarget = document.querySelector(`#${name}`);
     modalTarget.classList.add('on');
     const modalCloseBtn = modalTarget.querySelector('.modal-close-btn');
-    modalCloseBtn.focus(); // 팝업 닫기 버튼으로 포커스 이동
+    modalCloseBtn.focus();
 }
 
-// 팝업 닫기
-function modalClose(name) {
-    const modalName = `#${name}`;
-    const modalTarget = document.querySelector(modalName);
+function closeModal(name) {
+    const modalTarget = document.querySelector(`#${name}`);
     modalTarget.classList.remove('on');
-    document.querySelector('.return-focus')?.focus(); // 팝업 열기 버튼으로 포커스 복귀
+    const returnFocusEl = document.querySelector('.return-focus');
+    if (returnFocusEl) {
+        returnFocusEl.focus();
+        // returnFocusEl.classList.remove('return-focus');
+    }
 }
 
-// 팝업 포커스 복귀 클래스 삽입
-const modalBtnEls = document.querySelectorAll('.modal-open-btn');
-modalBtnEls.forEach((modalBtnEl) => {
+function assignFocusReturnClass(modalBtnEl) {
     modalBtnEl.addEventListener('click', function () {
-        document.querySelectorAll('.return-focus').forEach((focusEl) => {
-            focusEl.classList.remove('return-focus');
+        const focusReturnEls = document.querySelectorAll('.return-focus');
+        focusReturnEls.forEach((el) => {
+            el.classList.remove('return-focus');
         });
         this.classList.add('return-focus');
     });
-});
+}
 
+const modalBtnEls = document.querySelectorAll('.modal-open-btn');
+modalBtnEls.forEach(assignFocusReturnClass);
 
 // 슬라이드 업, 다운
 let slideUp = (target, duration = 500) => {
@@ -170,3 +182,68 @@ function slideToggle (target, duration, classList) {
     }
 };
 
+// 리스트 정렬
+function sortList() {
+    const sortItems = document.querySelectorAll('.sort-item');
+    
+    function toggleSortDirection(target) {
+        const isUp = target.classList.contains('up');
+        target.classList.toggle('up', !isUp);
+        target.classList.toggle('down', isUp);
+    }
+    
+    function removeActiveClassFromOthers(clickedItem) {
+        sortItems.forEach((item) => {
+            if (item !== clickedItem) {
+                item.classList.remove('active');
+            }
+        });
+    }
+    
+    function updateAccessibilityText(item) {
+        const targetSkips = item.querySelectorAll('.visually-hidden');
+        targetSkips.forEach((targetSkip) => targetSkip.remove());
+        accessibilityText(item);
+    }
+    
+    sortItems.forEach((sortItem) => {
+        sortItem.addEventListener('click', function () {
+            removeActiveClassFromOthers(sortItem);
+            sortItem.classList.add('active');
+            toggleSortDirection(sortItem);
+            updateAccessibilityText(sortItem);
+        }, { capture: true });
+    });
+}
+
+// 접근성 텍스트
+function accessibilityText(targetEl) {
+    let spanEl = document.createElement('span');
+    let spanText = document.createTextNode('선택됨');
+    spanEl.classList.add('visually-hidden');
+    spanEl.appendChild(spanText);
+    targetEl.append(spanEl);
+}
+
+// 드롭다운 토글
+
+function dropDownToggle(){
+    const dropDownToggleBtns = document.querySelectorAll('.dropdown-toggle');
+    const dropDownToggleWraps = document.querySelectorAll('.dropdown-toggle-group');
+
+    dropDownToggleBtns.forEach((dropDownToggleBtn) => {
+        dropDownToggleBtn.addEventListener('click', function(){
+            const dropDownWrap = dropDownToggleBtn.parentElement;
+            dropDownWrap.classList.toggle('on');
+        })
+    })
+    // 드롭다운 토글 그룹 외부 클릭 시 드롭다운 메뉴를 닫습니다
+    document.addEventListener('mouseup', function(e){
+        let target = e.target;
+        if(!document.querySelector('.dropdown-toggle-group').contains(target)){
+            dropDownToggleWraps.forEach((dropDownToggleWrap)=> {
+                dropDownToggleWrap.classList.remove('on')
+            })
+        }
+    })
+}

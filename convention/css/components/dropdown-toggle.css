@@ -1,0 +1,27 @@
+/* 드롭다운 */
+.dropdown-toggle-group {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle-group .dropdown-menu {
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    z-index: 1;
+    display: none;
+    min-width: 100px;
+    transform: translateY(100%);
+    border: 1px solid #ddd;
+    background: #ffffff;
+    box-shadow: 1px 2px 4px rgba(0,0,0,.4);
+}
+
+.dropdown-toggle-group.on .dropdown-menu {
+    display: block;
+}
+
+.dropdown-toggle-group .menu-item a {
+    display: block;
+    padding: 10px 14px;
+}

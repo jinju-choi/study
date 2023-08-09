@@ -1,0 +1,40 @@
+.list-top-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.list-total {
+    display: flex;
+    align-items: center;
+}
+
+.sort-item {
+    color: #999999;
+}
+
+.sort-item + .sort-item::before {
+    content: "";
+    display: inline-block;
+    width: 1px;
+    height: 15px;
+    margin: 0 10px;
+    vertical-align: middle;
+    background-color: #888888;
+}
+
+.sort-item.active {
+    color: #111111;
+}
+.sort-item::after {
+    content: "▼";
+    display: inline-block;
+}
+.sort-item.active::after {
+    color: #111111;
+}
+.sort-item.up::after {
+    transform: rotate(180deg);
+}
+.sort-item.down::after {
+    transform: rotate(0);
+}

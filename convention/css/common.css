@@ -10,6 +10,8 @@
 @import "./components/pagination.css";
 @import "./components/modal.css";
 @import "./components/accordion.css";
+@import "./components/sort-list.css";
+@import "./components/dropdown-toggle.css";
 
 .visually-hidden {
     position: absolute !important;

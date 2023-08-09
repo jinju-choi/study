@@ -147,7 +147,6 @@ header {
     border: 1px solid #eee;
     border-radius: 20px;
     background: #ffffff;
-    overflow: hidden;
 }
 
 .col-group.full {
@@ -166,6 +165,7 @@ header {
 .code-view-btn {
     width: 100%;
     padding: 5px;
+    border-radius: 0 0 20px 20px;
     color: #cbcbcb;
 }
 

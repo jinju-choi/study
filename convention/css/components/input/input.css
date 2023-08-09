@@ -94,6 +94,10 @@ input[type="date"].date-custom::-webkit-calendar-picker-indicator {
 }
 
 /* 파일 업로드 */
+.upload-box .file-item {
+    display: flex;
+    align-items: center;
+}
 .upload-box .file-item + .file-item {
     margin: 8px 0 0;
 }
@@ -101,6 +105,7 @@ input[type="date"].date-custom::-webkit-calendar-picker-indicator {
 .upload-box .file-item-delete {
     width: 16px;
     height: 16px;
+    margin-left: 8px;
     text-indent: -9999px;
     background: url(../../../images/icon-x.svg) no-repeat center / 80%;
     background-position: center;
