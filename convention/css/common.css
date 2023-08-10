@@ -12,6 +12,7 @@
 @import "./components/accordion.css";
 @import "./components/sort-list.css";
 @import "./components/dropdown-toggle.css";
+@import "./components/font.css";
 
 .visually-hidden {
     position: absolute !important;

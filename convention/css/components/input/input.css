@@ -147,6 +147,21 @@ input[type="date"].date-custom::-webkit-calendar-picker-indicator {
     color: #aaa;
 }
 
+/* 스크롤바 설정*/
+.textarea::-webkit-scrollbar{
+    width: 6px;
+}
+
+.textarea::-webkit-scrollbar-thumb{
+    height: 17%;
+    background-color: #6a6a6a;
+    border-radius: 10px;    
+}
+
+.textarea::-webkit-scrollbar-track{
+    background-color: rgba(0,0,0,0.1);
+}
+
 .textarea-count {
     position: relative;
 }

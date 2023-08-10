@@ -4,7 +4,37 @@ document.addEventListener('DOMContentLoaded', () => {
     accordionSlide()
     sortList();
     dropDownToggle();
+    textareaSize();
 })
+
+// textarea 글자수에 따른 높이 조절
+function resize(obj) {
+    obj.style.height = "1px";
+    obj.style.height = obj.scrollHeight + "px";
+    console.log(obj.scrollHeight);
+    console.log(obj);
+}
+
+// readonly 인 textarea 요소 내용의 따른 높이 조절
+function textareaSize() {
+    // readonly 인 textarea 요소 내용의 따른 높이 조절
+    const textArea = document.querySelectorAll(".read_textarea");
+    if (textArea) {
+        textArea.forEach((item) => {
+            console.log(item);
+            item.style.height = "auto";
+            item.style.height = item.scrollHeight + "px";
+        });
+    }
+}
+const textArea = document.querySelectorAll(".read_textarea");
+if (textArea) {
+    textArea.forEach((item) => {
+        console.log(item);
+        item.style.height = "auto";
+        item.style.height = item.scrollHeight + "px";
+    });
+}
 
 // 공통 함수 - 아코디언 상태 변경
 function toggleAccordion(target, skip) {
@@ -48,6 +78,7 @@ function accordionBasic() {
     if (accordion) {
         accordion.forEach((el) => {
             el.addEventListener('click', function (e) {
+                e.stopPropagation()
                 const accordionItem = el.parentElement;
                 const skipText = el.querySelector('.visually-hidden');
         
@@ -56,14 +87,15 @@ function accordionBasic() {
                     item.classList.remove('active');
                     item.querySelector('.visually-hidden').textContent = '열기';
                 });
-                // toggleAccordion(accordionItem, skipText);
-                if (accordionItem.classList.contains('active')) {
-                    accordionItem.classList.remove('active');
-                    skipText.textContent = '열기';
-                } else {
+                // if (!accordionItem.classList.contains('active')) {
+                //     accordionItem.classList.remove('active');
+                //     skipText.textContent = '열기';
+                // } 
+                // else {
                     accordionItem.classList.add('active');
                     skipText.textContent = '닫기';
-                }
+                // }
+                // toggleAccordion(accordionItem, skipText);
             });
         });
     }
@@ -87,22 +119,25 @@ const accordion = document.querySelectorAll('.accordion-slide .title');
     }
 }
 
-// 팝업 열기
+// 모달창 열기
 function openModal(name) {
     const modalTarget = document.querySelector(`#${name}`);
-    modalTarget.classList.add('on');
     const modalCloseBtn = modalTarget.querySelector('.modal-close-btn');
+    modalTarget.classList.add('on');
     modalCloseBtn.focus();
+
+    document.body.classList.add('scroll-off');
 }
 
 function closeModal(name) {
     const modalTarget = document.querySelector(`#${name}`);
-    modalTarget.classList.remove('on');
     const returnFocusEl = document.querySelector('.return-focus');
+    modalTarget.classList.remove('on');
     if (returnFocusEl) {
         returnFocusEl.focus();
         // returnFocusEl.classList.remove('return-focus');
     }
+    document.body.classList.remove('scroll-off');
 }
 
 function assignFocusReturnClass(modalBtnEl) {
@@ -117,6 +152,7 @@ function assignFocusReturnClass(modalBtnEl) {
 
 const modalBtnEls = document.querySelectorAll('.modal-open-btn');
 modalBtnEls.forEach(assignFocusReturnClass);
+
 
 // 슬라이드 업, 다운
 let slideUp = (target, duration = 500) => {

@@ -5,7 +5,7 @@ body,
 input,
 button,
 select {
-    line-height: 1;
+    line-height: 1.3;
     font-size: 16px;
     font-family: 'Noto Sans KR', sans-serif;
     color: #111111;
@@ -156,6 +156,7 @@ header {
 .code-box {
     display: flex;
     flex-direction: column;
+    text-overflow: ellipsis;
 }
 
 .demo-contents {
@@ -172,6 +173,10 @@ header {
 .code-view-btn:hover,
 .code-view-btn.active {
     background: #ebebeb;
+}
+
+.code-view-btn.active {
+    border-radius: 0;
 }
 
 .code-view-btn span {
