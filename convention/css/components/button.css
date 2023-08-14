@@ -56,3 +56,11 @@
     background: rgb(255, 119, 119);
     color: #ffffff;
 }
+
+/* top button */
+.top-btn {
+    width: 60px;
+    height: 60px;
+    background: #587fef;
+    color: #fff;
+}

@@ -13,8 +13,6 @@
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css" />
         <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
         <script src="./code.js"></script>
-        <script src="./wvScript.js"></script>
-        <script src="./js/components/tab.js"></script>
     </head>
     <body>
         <header>WV Components Guide</header>
@@ -131,6 +129,7 @@
                         </div>
                         <div class="col-group">
                             <xmp class="code-view-box" data-title="input date placeholder">
+                                <!-- required 속성 필수 -->
                                 <label for="input-text" class="visually-hidden">날짜 입력</label>
                                 <input type="date" id="input-date" class="normal-input date-input" data-placeholder="yyyy-mm-dd" required />
                             </xmp>
@@ -806,6 +805,19 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- sample -->
+                <h2 class="content-title">top button</h2>
+                <div class="content-item">
+                    <div class="flex-group">
+                        <div class="col-group">
+                            <xmp class="code-view-box" data-title="top button">
+                                <button class="top-btn">top</button>
+                            </xmp>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- ------------------------------------------ -->
                 <!-- sample -->
                 <h2 class="content-title">sample</h2>
@@ -897,5 +909,7 @@
                 });
             }
         </script>
+        <script src="./wvScript.js"></script>
+        <script src="./js/components/tab.js"></script>
     </body>
 </html>

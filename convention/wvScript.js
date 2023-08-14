@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     sortList();
     dropDownToggle();
     textareaSize();
+    topBtnScrollEvent();
 })
 
 // textarea 글자수에 따른 높이 조절
@@ -21,7 +22,6 @@ function textareaSize() {
     const textArea = document.querySelectorAll(".read_textarea");
     if (textArea) {
         textArea.forEach((item) => {
-            console.log(item);
             item.style.height = "auto";
             item.style.height = item.scrollHeight + "px";
         });
@@ -45,14 +45,6 @@ function toggleAccordion(target, skip) {
         target.classList.add('active');
         skip.textContent = '닫기';
     }
-}
-
-// 아코디언 초기화
-function resetAccordion(accordionItems) {
-    accordionItems.forEach((item) => {
-        item.classList.remove('active');
-        item.querySelector('.visually-hidden').textContent = '열기';
-    });
 }
 
 // 아코디언 중복
@@ -83,19 +75,14 @@ function accordionBasic() {
                 const skipText = el.querySelector('.visually-hidden');
         
                 // resetAccordion(accordionItems);
-                accordionItems.forEach((item) => {
-                    item.classList.remove('active');
-                    item.querySelector('.visually-hidden').textContent = '열기';
-                });
-                // if (!accordionItem.classList.contains('active')) {
-                //     accordionItem.classList.remove('active');
-                //     skipText.textContent = '열기';
-                // } 
-                // else {
-                    accordionItem.classList.add('active');
-                    skipText.textContent = '닫기';
-                // }
-                // toggleAccordion(accordionItem, skipText);
+                if (!accordionItem.classList.contains('active')) {
+                    accordionItems.forEach((item) => {
+                        item.classList.remove('active');
+                        item.querySelector('.visually-hidden').textContent = '열기';
+                    });
+                } 
+                accordionItem.classList.toggle('active');
+                skipText.textContent = '닫기';
             });
         });
     }
@@ -262,7 +249,6 @@ function accessibilityText(targetEl) {
 }
 
 // 드롭다운 토글
-
 function dropDownToggle(){
     const dropDownToggleBtns = document.querySelectorAll('.dropdown-toggle');
     const dropDownToggleWraps = document.querySelectorAll('.dropdown-toggle-group');
@@ -281,5 +267,13 @@ function dropDownToggle(){
                 dropDownToggleWrap.classList.remove('on')
             })
         }
+    })
+}
+
+// top 버튼클릭시 상단이동
+function topBtnScrollEvent(){
+    const topBtn = document.querySelector('.top-btn');
+    topBtn?.addEventListener('click', function(){
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     })
 }
