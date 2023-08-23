@@ -13,6 +13,7 @@
 @import "./components/sort-list.css";
 @import "./components/dropdown-toggle.css";
 @import "./components/font.css";
+@import "./components/thumbnail-item.css";
 
 .visually-hidden {
     position: absolute !important;
