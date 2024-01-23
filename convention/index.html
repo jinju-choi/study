@@ -1113,7 +1113,7 @@
             
             // 네비게이션 클릭 시 스크롤 기능 설정
             function navScroll(tit) {
-                const navItem = document.querySelectorAll('.navigation-list li');
+                const navItem = document.querySelectorAll('.navigation-list li a');
                 navItem.forEach((item) => {
                     item.addEventListener('click', function (e) {
                         e.preventDefault();
